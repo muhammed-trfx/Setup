@@ -2554,7 +2554,7 @@ teks = `
 `
                  taurusbutton = [{buttonId:`${prefix}🙌`,buttonText:{displayText:'🙌'},type:1},
 ]
-mhan = await bosco.prepareMessage(from, pfrply, video, {thumbnail: frply})
+mhan = await bosco.prepareMessage(from, frply, video, {thumbnail: frply})
 const taurus1 = {
 videoMessage: mhan.message.videoMessage,
 contentText: `${teks}`,
@@ -2661,7 +2661,7 @@ case 'cmd':
  {buttonId:`${prefix}menu`,buttonText:{displayText:'ʙᴀᴄᴋ ᴛᴏ ᴍᴇɴᴜ'},type:1}
 ]
  
-mhan = await bosco.prepareMessage(from, pfrply, taurus, {thumbnail: frply})
+mhan = await bosco.prepareMessage(from, frply, taurus, {thumbnail: frply})
 const taurus3 = {
 locationMessage: mhan.message.locationMessage,
 contentText: `${hehe}`,
@@ -2734,7 +2734,7 @@ bosco.sendMessage(_.jid, buff, MessageType.buttonsMessage, { quoted: ftroli, mim
                reply(`🦋 ${res.all[0].title} 🦋`)
                let thumbInfo = `
 📜 Tɪᴛʟᴇ : ${res.all[0].title}
-🎁 Tʏᴘᴇ : mp3
+?? Tʏᴘᴇ : mp3
 📬 Iᴅ : ${res.all[0].videoId}
 🌐 Pᴜʙʟɪᴄᴀᴛɪᴏɴ : ${res.all[0].ago}
 🎞️ Wᴀᴛᴄʜᴇᴅ : ${res.all[0].views}
