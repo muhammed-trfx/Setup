@@ -291,7 +291,7 @@ module.exports = bosco = async (bosco, mek) => {
 		pporang = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
 		      }
 		const taurus = await getBuffer(pporang)
-		const ofrply = await getBuffer(pporang)
+		const dfrply = await getBuffer(pporang)
 		
 		        
         const isUrl = (url) => {
@@ -477,7 +477,17 @@ headerType: 6
 /}
 bosco.sendMessage(id, buttonMessages, MessageType.buttonsMessage, options)
 /}*/
-//Button document
+///Button Text
+const sendButMessage = (id, text1, desc1, but = [], options = {}) => {
+const buttonMessage = {
+contentText: text1,
+footerText: desc1,
+buttons: but,
+headerType: "EMPTY"
+}
+bosco.sendMessage(id, buttonMessage, MessageType.buttonsMessage, options)
+}
+///Button Document
 const sendButDocument = async(id, text1, desc1, media, doc1, but = [], options = {}) => {
 kma = doc1
 mhan = await bosco.prepareMessage(from, media, document, kma)
@@ -487,6 +497,32 @@ contentText: text1,
 footerText: desc1,
 buttons: but,
 headerType: "DOCUMENT"
+}
+bosco.sendMessage(id, buttonMessages, MessageType.buttonsMessage, options)
+}
+///Button Image
+const sendButImage = async(id, text1, desc1, gam1, but = [], options = {}) => {
+kma = gam1
+mhan = await bosco.prepareMessage(from, kma, image)
+const buttonMessages = {
+imageMessage: mhan.message.imageMessage,
+contentText: text1,
+footerText: desc1,
+buttons: but,
+headerType: "IMAGE"
+}
+bosco.sendMessage(id, buttonMessages, MessageType.buttonsMessage, options)
+}
+///Button Video
+const sendButVideo = async(id, text1, desc1, vid1, but = [], options = {}) => {
+kma = vid1
+mhan = await bosco.prepareMessage(from, kma, video)
+const buttonMessages = {
+videoMessage: mhan.message.videoMessage,
+contentText: text1,
+footerText: desc1,
+buttons: but,
+headerType: "VIDEO"
 }
 bosco.sendMessage(id, buttonMessages, MessageType.buttonsMessage, options)
 }
@@ -500,7 +536,7 @@ const fvid = {
                 },
 	 message: { 
                  "videoMessage": { 
-                 "title": `pepe sir`,
+                 "title": `taurus ser`,
                  "h": `${tampilUcapan} 🦋 ${pushname} 🦋`,
                  'duration': '99999', 
                  'caption': `${tampilUcapan} 🦋 ${pushname} 🦋`,
@@ -1500,13 +1536,13 @@ catlo(credits1)
 					if (!isOwner && !mek.key.fromMe) return reply(mess.only.owner)
 						 if (args.length < 1) return reply(`*Reply to a audio/sticker/video with link* 
 *Example :  ${prefix}${command} https://youtu.be/4mWfR23qFuA ,*`) 
-                    var pepe = q
+                    var taurus = q
 					anu = await bosco.chats.all()
 					if (isMedia && !mek.message.videoMessage || isQuotedAudio) {
 					const encmedia = isQuotedAudio ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
 					buff = await bosco.downloadMediaMessage(encmedia)
 					for (let _ of anu) {
-					bosco.sendMessage(_.jid, buff, MessageType.audio, { quoted: ftroli, mimetype: 'audio/mp4', duration: '359996400', ptt: true, contextInfo: { forwardingScore: 1, isForwarded: true, externalAdReply:{title: `🦋 𝐓 𝐀 𝐔 𝐑 𝐔 𝐒 🦋`,body:"*ʟᴏᴠᴇ ғʀᴏᴍ ᴛᴀᴜʀᴜs*",mediaType:"2",thumbnail: dfrply, mediaUrl:`${pepe}`}}})
+					bosco.sendMessage(_.jid, buff, MessageType.audio, { quoted: ftroli, mimetype: 'audio/mp4', duration: '359996400', ptt: true, contextInfo: { forwardingScore: 1, isForwarded: true, externalAdReply:{title: `🦋 𝐓 𝐀 𝐔 𝐑 𝐔 𝐒 🦋`,body:"*ʟᴏᴠᴇ ғʀᴏᴍ ᴛᴀᴜʀᴜs*",mediaType:"2",thumbnail: dfrply, mediaUrl:`${taurus}`}}})
 					}
 					}
 					break
@@ -2754,14 +2790,14 @@ bosco.sendMessage(from, taurus1, MessageType.buttonsMessage, { quoted: ftroli, c
 
  ‣ ʏᴏᴜ ɪɴғᴏ : ${num.line_type} - ${num.country_name} - ${num.carrier}_`
 `
-sendButDocument(from, `${menu}`, "*©TAURUS*", fs.readFileSync('./Taurus/Taurus'), {mimetype:Mimetype.pdf, thumbnail:fs.readFileSync('./media/image/banner.jpg'), filename:`${jmn} - ${week} - ${calender}`}, [{buttonId:`command`,buttonText:{displayText:'𝐇𝐄𝐋𝐏 𝐋𝐈𝐒𝐓'},type:1},{buttonId:`owner`,buttonText:{displayText:'𝐃𝐄𝐕𝐄𝐋𝐎𝐏𝐄𝐑'},type:1},{buttonId:`script`,buttonText:{displayText:'𝐒𝐂𝐑𝐈𝐏𝐓'},type:1}], {quoted:fmen, contextInfo: { mentionedJid: [stod], forwardingScore: 508, isForwarded: true, externalAdReply:{title:`ʜᴇʏ ${pushname}`,body:`*ᴇɴᴊᴏʏ ᴏᴜʀ ɴᴇᴡ ᴛᴀᴜʀᴜs ᴠ4.0`,mediaType:"2",thumbnail:ofrply,mediaUrl:`https://youtu.be/4mWfR23qFuA`}}})
+sendButDocument(from, `${menu}`, "*_© Taurus v4.0_*", fs.readFileSync('./Taurus/root'), {mimetype:Mimetype.pdf, thumbnail:fs.readFileSync('./media/image/banner.jpg'), filename:`${jmn} - ${week} - ${calender}`}, [{buttonId:`command`,buttonText:{displayText:'𝐇𝐄𝐋𝐏 𝐋𝐈𝐒𝐓'},type:1},{buttonId:`owner`,buttonText:{displayText:'𝐃𝐄𝐕𝐄𝐋𝐎𝐏𝐄𝐑'},type:1},{buttonId:`script`,buttonText:{displayText:'𝐒𝐂𝐑𝐈𝐏𝐓'},type:1}], {quoted:fmen, contextInfo: { mentionedJid: [stod], forwardingScore: 508, isForwarded: true, externalAdReply:{title:`ʜᴇʏ ${pushname}`,body:`*ᴇɴᴊᴏʏ ᴏᴜʀ ɴᴇᴡ ᴛᴀᴜʀᴜs ᴠ4.0`,mediaType:"2",thumbnail:dfrply,mediaUrl:`https://youtu.be/4mWfR23qFuA`}}})
 break
 case 'command':
  stod = `${sender}`
  listMsg = {
  buttonText: '𝐇𝐄𝐋𝐏 𝐋𝐈𝐒𝐓',
  footerText: '*🦋🌈𝑳𝒐𝒗𝒆 𝑭𝒓𝒐𝒎 𝑻𝒂𝒖𝒓𝒖𝒔 🦋 ✨*',
- description: `ʜᴇʏ @${stod.split('@')[0]}, Silahkan pilih menu disini`,
+ description: `ʜᴇʏ @${stod.split('@')[0]}, \n\nʜᴇʀᴇ ɪs ʏᴏᴜ ᴍᴇɴᴜ`,
  sections: [
                      {
                       "title": `${jmn} - ${week} ${weton} - ${calender}`,
