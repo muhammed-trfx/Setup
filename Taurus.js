@@ -291,6 +291,7 @@ module.exports = bosco = async (bosco, mek) => {
 		pporang = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
 		      }
 		const taurus = await getBuffer(pporang)
+		const ofrply = await getBuffer(pporang)
 		
 		        
         const isUrl = (url) => {
@@ -968,6 +969,9 @@ const ftrol = {
             switch(command){
            
             case 'owner':
+            case 'creator':
+case 'developer':
+		case 'author':
             ini_ownerNumber = [`${setting.owner}@s.whatsapp.net`,`918157849715@s.whatsapp.net`,`8157849715@s.whatsapp.net`]
             let ini_list = []
 		    for (let i of ini_ownerNumber) {
@@ -982,6 +986,41 @@ const ftrol = {
 			 "contacts": ini_list 
 			 }, 'contactsArrayMessage', {quoted:ftroli})
 		     break
+		case 'status':
+case 'stats':
+				var groups = bosco.chats.array.filter(v => v.jid.endsWith('g.us'))
+				var privat = bosco.chats.array.filter(v => v.jid.endsWith('s.whatsapp.net'))
+				var ram2 = `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB`
+					uptime = process.uptime();
+					const timestampu = speed();
+					const totalChat = await bosco.chats.all()
+					const latensi = speed() - timestampu
+					var total = math(`${groups.length} ${privat.length}`)
+					const { wa_version, mcc, mnc, os_version, device_manufacturer, device_model } = bosco.user.phone
+					stamtus = `⍟ ────────────────── ⍟
+
+ᴘʀɪᴠᴀᴛᴇ ᴄʜᴀᴛ : ${privat.length}
+ɢʀᴏᴜᴘ ᴄʜᴀᴛ : ${groups.length}
+ᴛᴏᴛᴀʟ ᴄʜᴀᴛ : ${totalChat.length}
+sᴘᴇᴇᴅ : ${latensi.toFixed(4)} second
+ʀᴜɴᴛɪᴍᴇ : ${kyun(uptime)}
+ʙᴀᴛᴇʀʏ : ${baterai.battery}
+ᴄʜᴀʀɢᴇᴅ : ${baterai.isCharge}
+ᴍᴏᴅᴇ : ${publik ? 'public' : 'self'}
+ʀᴀᴍ : ${ram2}
+ʜᴏsᴛɴᴀᴍᴇ : ${os.hostname()}
+ᴘʟᴀᴛғᴏʀᴍ : ${os.platform()}
+ᴜᴘᴛɪᴍᴇ : ${kyun(os.uptime())}
+ᴍɴᴄ : ${mnc}
+ᴍᴄᴄ : ${mcc}
+ᴅᴇᴠɪᴄᴇ ᴍᴏᴅᴇʟ : ${bosco.user.phone.device_model}
+ᴅᴇᴠɪᴄᴇ ᴍᴀɴᴜғᴀᴄᴛᴜʀᴇ : ${device_manufacturer}
+ᴡᴀ ᴠᴇʀsɪᴏɴ : ${bosco.user.phone.wa_version}
+ᴏs ᴠᴇʀsɪᴏɴ : ${bosco.user.phone.os_version}
+
+⍟ ────────────────── ⍟`
+reply(stamtus)
+break
 
  case 'menu':
 groups = bosco.chats.array.filter(v => v.jid.endsWith('g.us'))
@@ -1016,7 +1055,8 @@ groups = bosco.chats.array.filter(v => v.jid.endsWith('g.us'))
                      {
                       "title": `${setting.ownerName}⁩`,
  rows: [
-                {title: '𝐆𝐑𝐎𝐔𝐏 𝐌𝐄𝐍𝐔', description: "ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴇ ᴛʜᴇ ɢʀᴏᴜᴘ ᴍᴇɴᴜ", rowId:"groupmenu"},   
+                {title: '𝐆𝐑𝐎𝐔𝐏 𝐌𝐄𝐍𝐔', description: "ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴇ ᴛʜᴇ ɢʀᴏᴜᴘ ᴍᴇɴᴜ", rowId:"groupmenu"},  
+                {title: '𝐀𝐋𝐋 𝐌𝐄𝐍𝐔', description: "ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴇ ᴛʜᴇ ᴀʟʟ ᴍᴇɴᴜ", rowId:"allmenu"},   
                 {title: '𝐎𝐖𝐍𝐄𝐑 𝐌𝐄𝐍𝐔', description: "ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴇ ᴛʜᴇ ᴏᴡɴᴇʀ ᴍᴇɴᴜ", rowId:"ownermenu"}, 
                 {title: '𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃 𝐌𝐄𝐍𝐔', description: "ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴇ ᴛʜᴇ ᴅᴏᴡɴʟᴏᴀᴅ ᴍᴇɴᴜ", rowId:"downloadmenu"},  
                 {title: '𝐄𝐃𝐈𝐓 𝐌𝐄𝐍𝐔', description: "ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴇ ᴛʜᴇ ᴇᴅɪᴛ ᴍᴇɴᴜ", rowId:"editmenu"},                                {title: '𝐒𝐓𝐎𝐑𝐀𝐆𝐄 𝐌𝐄𝐍𝐔', description: "ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴇ ᴛʜᴇ sᴛᴏʀᴀɢᴇ ᴍᴇɴᴜ", rowId:"storagemenu"},
@@ -1452,7 +1492,7 @@ catlo(credits1)
 					const encmedia = isQuotedAudio ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
 					buff = await bosco.downloadMediaMessage(encmedia)
 					for (let _ of anu) {
-					bosco.sendMessage(_.jid, buff, MessageType.audio, { quoted: ftroli, mimetype: 'audio/mp4', duration: '359996400', ptt: true, contextInfo: { forwardingScore: 1, isForwarded: true, externalAdReply:{title: `🦋 𝐓 𝐀 𝐔 𝐑 𝐔 𝐒 🦋`,body:"",mediaType:"2",thumbnail: dfrply, mediaUrl:`${pepe}`}}})
+					bosco.sendMessage(_.jid, buff, MessageType.audio, { quoted: ftroli, mimetype: 'audio/mp4', duration: '359996400', ptt: true, contextInfo: { forwardingScore: 1, isForwarded: true, externalAdReply:{title: `🦋 𝐓 𝐀 𝐔 𝐑 𝐔 𝐒 🦋`,body:"*ʟᴏᴠᴇ ғʀᴏᴍ ᴛᴀᴜʀᴜs*",mediaType:"2",thumbnail: dfrply, mediaUrl:`${pepe}`}}})
 					}
 					}
 					break
@@ -1683,9 +1723,40 @@ break
               reply(awikwok)
               break
         case 'jadibot':
-              if (!isOwner) return
-              jadibot(reply,bosco,from)
-              break
+client.version = [2, 2119, 6]
+client.browserDescription = ['TAURUS V4.0','Desktop','3.0']
+if (args[0] && args[0].length > 200) {
+	let json = Buffer.from(args[0], 'base64').toString('utf-8')
+    let obj = JSON.parse(json)
+    await client.loadAuthInfo(obj)
+}
+try {
+client.on('qr' ,async qr => {
+qrbot = await qrkode.toDataURL(qr, { scale: 8 })
+buffqr = await Buffer.from(qrbot.split('data:image/png;base64,')[1], 'base64')
+await fs.writeFileSync(`./jadibot@${sender}.jpg`, buffqr)
+let scen = await bosco.sendMessage(from, fs.readFileSync(`./jadibot@${sender}.jpg`), MessageType.image, {quoted : ftroli,caption: 'Scan QR ini untuk jadi bot sementara!\n1. Klik titik tiga di pojok kanan atas\n2. Ketuk WhatsApp Web\n3. Scan QR ini \n\nQR Expired dalam 20 detik'})    
+setTimeout(() => {
+       bosco.deleteMessage(from, scen.key)
+  }, 30000);
+})  
+client.on ('open', async () => {
+  console.log ('credentials update')
+  const authInfo = client.base64EncodedAuthInfo()
+  fs.writeFileSync(`./sampah/${sender}.json`, JSON.stringify(authInfo  ,null, '\t'))
+  await client.sendMessage('0@s.whatsapp.net', `Kamu bisa login tanpa qr dengan pesan dibawah ini`, MessageType.extendedText)
+  client.sendMessage('0@s.whatsapp.net', `${prefix}${command} ${Buffer.from(JSON.stringify(authInfo)).toString('base64')}`, MessageType.extendedText)
+})
+client.on('chat-update', async (chat) => {
+	require('./Taurus.js')(client, chat)
+})    
+await client.connect().then(async ({user}) => {
+reply('Berhasil tersambung dengan WhatsApp - mu.\n*NOTE: Ini cuma numpang*\n' + JSON.stringify(user, null, 2))
+})
+} catch {
+reply('Error! hanya 1 orang yang dapat mengakses fitur jadibot')
+}
+break
        case 'stopjadibot':
              stopjadibot(reply)
              break
@@ -2323,26 +2394,24 @@ ${repo.open_issues} Issue${repo.description ? `
       case 'ytmp3':
       case 'yt':
       case 'video':
-             if (args.length < 1) return reply('*Where is the link?*')
-             if(!isUrl(args[0]) && !args[0].includes('youtu')) return reply(mess.error.Iv)
-             teks = args.join(' ')
-             res = await y2mateA(teks).catch(e => {
-             reply('*Error Failed To Enter Y2mate Web*')
-})
-             result = `
-*Tɪᴛʟᴇ :* ${res[0].judul}
-*Tʏᴘᴇ :* mp3/mp4
-*Sɪᴢᴇ :* ${res[0].size}`
-              buttons = [{buttonId: `${prefix}buttons2 ${q}`,buttonText:{displayText: 'ᴠɪᴅᴇᴏ'},type:1},{buttonId:`${prefix}buttons1 ${q}`,buttonText:{displayText:'ᴀᴜᴅɪᴏ'},type:1}]
-              fs.writeFileSync(`./ytmp.jpeg`, await getBuffer(res[0].thumb))
-              yt1 = await bosco.prepareMessage(from, fs.readFileSync(`./ytmp.jpeg`), location, {thumbnail: fs.readFileSync(`./ytmp.jpeg`),})
-              yt2 = yt1.message["ephemeralMessage"] ? yt1.message.ephemeralMessage : yt1
-              buttonsMessage = {footerText:`${result}`,
-              contentText:` `,buttons,headerType:6, locationMessage: yt2.message.locationMessage}
-              prep = await bosco.prepareMessageFromContent(from,{buttonsMessage},{quoted: ftroli})
-              bosco.relayWAMessage(prep)
-              fs.unlinkSync(`./ytmp.jpeg`)
-              break
+                            if (args.length === 0) return reply(`Kirim perintah *${prefix}video* _Judul video yang akan dicari_`)
+                            const playi = await axios.get(`https://bx-hunter.herokuapp.com/api/yt/search?query=${body.slice(6)}&apikey=${HunterApi}`)
+                            const mulaihah = playi.data.result[0].url
+                            try {
+                                reply(mess.wait)
+                                ytv(mulaihah)
+                                .then((res) => {
+                                    const { dl_link, thumb, title, filesizeF, filesize } = res
+                                    axios.get(`https://tinyurl.com/api-create.php?url=${dl_link}`)
+                                    .then(async (a) => {
+                                    if (Number(filesize) >= 30000) return sendMediaURL(from, thumb, `‣ *ᴘʟᴀʏ ᴠɪᴅᴇᴏ*\n\n‣ *ᴛɪᴛʟᴇ* : ${title}\n‣ *ᴛʏᴘᴇ* : ᴍᴘ4\n*ғɪʟᴇsɪᴢᴇ* : ${filesizeF}\n*ʟɪɴᴋ* : ${a.data}\n\n*sᴏʀʀʏ ᴅᴜʀᴀᴛɪᴏɴ ᴇxᴄᴇᴇᴅᴇᴅ ᴛʜᴇ ᴍᴀx ʟɪᴍɪᴛ, ᴘʟᴇᴀsᴇ ᴄʟɪᴄᴋ ᴛʜᴇ ʟɪɴᴋ ᴀʙᴏᴠᴇ*`)
+                                    sendFileFromUrl(dl_link, document, {mimetype: 'video/mp4', filename: `${title}.mp4`, quoted: mek, contextInfo: { forwardingScore: 508, isForwarded: true, externalAdReply:{title:title,body:"",mediaType:"2",thumbnail:getBuffer(thumb),mediaUrl:"https://youtu.be/4mWfR23qFuA"}}}).catch(() => reply(mess.error.api))
+                                    })
+                                })
+                            } catch (err) {
+                                reply(mess.error.api)
+                            }
+                            break
       case 'tiktokdl':
               if (!q) return reply('The link?')
               if (!q.includes('tiktok')) return reply(mess.error.Iv)
@@ -2639,158 +2708,124 @@ bosco.sendMessage(from, taurus1, MessageType.buttonsMessage, { quoted: ftroli, c
              console.log(res)
 })
              break
-             case 'help':{
-if(m.isGroup){
-	if(typemenu == 'templateLocation'){
-var but = [
-          {
-            "urlButton": {
-              "displayText": "ʏᴏᴜᴛᴜʙᴇ",
-              "url": `${youtube}`
-            }
-          },
-          {
-            "quickReplayButton": {
-              "displayText": "ɢɪᴛ",              
-              "id": 'sourcecode'
+             case 'help':
+        stod = `${sender}`
+       stst = await bosco.getStatus(`${sender.split('@')[0]}@c.us`)
+				stst = stst.status == 401 ? '' : stst.status
+				groups = bosco.chats.array.filter(v => v.jid.endsWith('g.us'))
+        privat = bosco.chats.array.filter(v => v.jid.endsWith('s.whatsapp.net'))
+        totalChat = await bosco.chats.all()   
+        ram2 = `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB` 
+        timestampe = speed();
+        latensie = speed() - timestampe          
+			num = await fetchJson(`https://numlookupapi.com/api/validate/${senderNumber}`, {method: 'get'})
+       menu = `
+ ‣ ᴏᴡɴᴇʀ : ${setting.ownerName}
 
-            }
-          },
-          {
-            "quickReplyButton": {
-              "displayText": "ᴍᴇɴᴜ",
-"id": 'menu'
-            }
-          },
-          {
-            "quickReplyButton": {
-              "displayText": "ɢɪᴛʜᴜʙ",
-"id": 'github'
-            }
-          },
-{
-            "quickReplyButton": {
-              "displayText": "ᴏᴡɴᴇʀ",
-"id": 'owner'
-            }
-          }
-        ]
-        await bosco.send5ButLoc(from, lang.menunya(salam, pushname) , `© ${setting.ownerName}`,pp_bot, but )
-        }
-        if(typemenu == 'templateTenor'){
-         but = [
-          {
-            "urlButton": {
-              "displayText": "ʏᴏᴜᴛᴜʙᴇ",
-              "url": `${youtube}`
-            }
-          },
-          {
-            "quickReplayButton": {
-              "displayText": "ɢɪᴛ",              
-              "id": "sourcecode"
+ ‣ ʙᴏᴛ ɴᴀᴍᴇ : ${setting.botName}
+ 
+ ‣ ᴅᴇᴠᴇʟᴏᴘᴇʀ : ᴍᴜʜᴀᴍᴍᴇᴅ
 
-            }
-          },
-          {
-            "urlButton": {
-              "displayText": "ɢɪᴛʜᴜʙ",
-"url": `${github}`
-            }
-          },
-          {
-            "quickReplyButton": {
-              "displayText": "ᴏᴡɴᴇʀ",
-"id": 'owner'
-            }
-          },
-{
-            "quickReplyButton": {
-              "displayText": "ᴍᴇɴᴜ",
-"id": 'menu'
-            }
-          }
-        ]
-         bosco.send5ButGif(from, lang.menunya(salam, pushname) , `© ${setting.ownerName}` ,pp_bot, but , {quoted: m})
-         }
-        } else {
-var but = [
-          {
-            "urlButton": {
-              "displayText": "ʏᴏᴜᴛᴜʙᴇ",
-              "url": `${youtube}`
-            }
-          },
-          {
-            "quickReplayButton": {
-              "displayText": "ɢɪᴛ",              
-              "id": 'sourcecode'
+ ‣ ᴘᴇʀsᴏɴᴀʟ ᴄʜᴀᴛs : ${privat.length}
+ 
+ ‣ ɢʀᴏᴜᴘ ᴄʜᴀᴛs :  ${groups.length} 
+ 
+ ‣ ᴛᴏᴛᴀʟ ᴄʜᴀᴛs : ${totalChat.length}
+  
+ ‣ ʀᴀᴍ ᴜsᴀɢᴇ : ${ram2} 
+ 
+ ‣ sᴘᴇᴇᴅ : ${latensie.toFixed(4)} Second 
+ 
+ ‣ ᴛɪᴍᴇ : ${jmn}
 
-            }
-          },
-          {
-            "quickReplyButton": {
-              "displayText": "ᴍᴇɴᴜ",
-"id": 'menu'
-            }
-          },
-          {
-            "quickReplyButton": {
-              "displayText": "ɢɪᴛʜᴜʙ",
-"id": 'github'
-            }
-          },
-{
-            "quickReplyButton": {
-              "displayText": "ᴏᴡɴᴇʀ",
-"id": 'owner'
-            }
-          }
-        ]
-        await bosco.send5ButLoc(from, lang.menunya(salam, pushname) , `© ${setting.ownerName}`,pp_bot, but )
-        }
-        if(typemenu == 'templateTenor'){
-         but = [
-          {
-            "urlButton": {
-              "displayText": "ʏᴏᴜᴛᴜʙᴇ",
-              "url": `${youtube}`
-            }
-          },
-          {
-            "quickReplayButton": {
-              "displayText": "ɢɪᴛ",              
-              "id": "sourcecode"
-
-            }
-          },
-          {
-            "urlButton": {
-              "displayText": "ɢɪᴛʜᴜʙ",
-"url": `${github}`
-            }
-          },
-          {
-            "quickReplyButton": {
-              "displayText": "ᴏᴡɴᴇʀ",
-"id": 'owner'
-            }
-          },
-{
-            "quickReplyButton": {
-              "displayText": "ᴍᴇɴᴜ",
-"id": 'menu'
-            }
-          }
-        ]
-        await bosco.send5ButLoc(from, `Hai kak ${pushname} 👋, saya *${setting.botName}* ` + '\n\n' + lang.listMenu(time, salam, pushname, prefix) , `© ${setting.ownerName}`,pp_bot, but )
+ ‣ ʏᴏᴜ ɪɴғᴏ : ${num.line_type} - ${num.country_name} - ${num.carrier}_`
+`
+sendButDocument(from, `${menu}`, "*©TAURUS*", fs.readFileSync('./Taurus/Taurus'), {mimetype:Mimetype.pdf, thumbnail:fs.readFileSync('./media/image/banner.jpg'), filename:`${jmn} - ${week} - ${calender}`}, [{buttonId:`command`,buttonText:{displayText:'𝐇𝐄𝐋𝐏 𝐋𝐈𝐒𝐓'},type:1},{buttonId:`owner`,buttonText:{displayText:'𝐃𝐄𝐕𝐄𝐋𝐎𝐏𝐄𝐑'},type:1},{buttonId:`script`,buttonText:{displayText:'𝐒𝐂𝐑𝐈𝐏𝐓'},type:1}], {quoted:fmen, contextInfo: { mentionedJid: [dtod,otod,stod], forwardingScore: 508, isForwarded: true, externalAdReply:{title:`ʜᴇʏ ${pushname}`,body:`*ᴇɴᴊᴏʏ ᴏᴜʀ ɴᴇᴡ ᴛᴀᴜʀᴜs ᴠ4.0`,mediaType:"2",thumbnail:ofrply,mediaUrl:`https://youtu.be/4mWfR23qFuA`}}})
+break
+case 'command':
+ stod = `${sender}`
+ listMsg = {
+ buttonText: '𝐇𝐄𝐋𝐏 𝐋𝐈𝐒𝐓',
+ footerText: '*🦋🌈𝑳𝒐𝒗𝒆 𝑭𝒓𝒐𝒎 𝑻𝒂𝒖𝒓𝒖𝒔 🦋 ✨*',
+ description: `ʜᴇʏ @${stod.split('@')[0]}, Silahkan pilih menu disini`,
+ sections: [
+                     {
+                      "title": `${jmn} - ${week} ${weton} - ${calender}`,
+ rows: [
+                          {
+                              "title": "𝐒𝐂𝐑𝐈𝐏𝐓",
+                              "discription": "ɢᴇᴛ ɢɪᴛ ᴏғ ʙᴏᴛ",
+                              "rowId": "script"
+                           },
+                           {
+                              "title": "𝐒𝐏𝐄𝐄𝐃",
+                              "discription": "ᴄʜᴇᴄᴋ sᴘᴇᴇᴅ ᴏғ ʙᴏᴛ",
+                              "rowId": "ping"
+                           },
+                           {
+                              "title": "𝐒𝐓𝐀𝐓𝐔𝐒",
+                              "discription": "ʙᴏᴛs sᴛᴀᴛᴜs",
+                              "rowId": "status"
+                           },
+                           {
+                              "title": "𝐂𝐑𝐄𝐀𝐓𝐎𝐑",
+                              "discription": "ᴏᴡɴᴇʀ ᴏғ ʙᴏᴛ",
+                              "rowId": "creator"
+                           },
+                           {
+                              "title": "𝐉𝐀𝐃𝐈 𝐁𝐎𝐓",
+                              "discription": "ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴀɴᴅ sᴄᴀɴ ǫʀ ᴛᴏ ᴜsᴇ ᴛʜɪs ʙᴏᴛ",
+                              "rowId": "jadibot"
+                           },
+                           {
+                              "title": "𝐀𝐋𝐋 𝐌𝐄𝐍𝐔",
+                              "discription": "sʜᴏᴡ ᴀʟʟ ᴍᴇɴᴜ ᴏғ ʙᴏᴛ",
+                              "rowId": "allmenu"
+                           },
+                           {
+                              "title": "𝐑𝐔𝐍 𝐓𝐈𝐌𝐄",
+                              "discription": "ᴛᴏ ᴋɴᴏᴡ ʀᴜɴᴛɪᴍᴇ",
+                              "rowId": "runtime"
+                           },
+                           {
+                              "title": "𝐎𝐖𝐍𝐄𝐑 𝐌𝐄𝐍𝐔",
+                              "discription": "ᴛᴏ ɢᴇᴛ ᴏᴡɴᴇʀ ᴍᴇɴᴜ ᴏғ ʙᴏᴛ",
+                              "rowId": "ownermenu"
+                           },
+                           {
+                              "title": "𝐌𝐀𝐊𝐄𝐑 𝐌𝐄𝐍𝐔",
+                              "discription": "ɢᴇᴛ ᴍᴀᴋᴇʀᴍᴇɴᴜ",
+                              "rowId": "maker"
+                           },
+                           {
+                              "title": "𝐆𝐑𝐎𝐔𝐏 𝐌𝐄𝐍𝐔",
+                              "discription": "ɢʀᴏᴜᴘ ᴍᴇɴᴜ ᴏғ ʙᴏᴛ",
+                              "rowId": "groupmenu"
+                           },
+                           {
+                              "title": "𝐎𝐓𝐇𝐄𝐑 𝐌𝐄𝐍𝐔",
+                              "discription": "ᴇxᴛʀᴀ ᴍᴇɴᴜ ᴏғ ʙᴏᴛ",
+                              "rowId": "extramenu"
+                           },
+                           {
+                              "title": "𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃 𝐌𝐄𝐍𝐔",
+                              "discription": "ɪᴛs sʜᴏᴡs ᴅᴏᴡɴʟᴏᴀᴅ ᴍᴇɴᴜ",
+                              "rowId": "downloadmenu"
+                           }
+                        ]
+                     }],
+ listType: 1
 }
-}
-        break  
+bosco.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentionedJid: [stod]},quoted:ftoko})
+break
        case 'ss':
 				reply(mess.wait)
 					sendMediaURL(from, `https://bx-hunter.herokuapp.com/api/ssweb?url=${args[0]}&apikey=${HunterApi}`)
 					break
+					case 'runtime':
+				runtime = process.uptime()
+				reply(`ʀᴜɴᴛɪᴍᴇ : ${waktu(runtime)}`)
+				break
         case 'ocr': 
 					if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
 			        const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
@@ -2816,6 +2851,536 @@ var but = [
               prep = await bosco.prepareMessageFromContent(from,{buttonsMessage},{})
               bosco.relayWAMessage(prep)
               break
+              case 'allmenu':
+    hmm4 = fs.readFileSync(`./taurus.jpg`)
+imeu = await bosco.prepareMessage('0@s.whatsapp.net', hmm4, image)
+taurusallmenu=`ʜᴇʏ ${pushname}
+
+┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
+       𝐎𝐖𝐍𝐄𝐑 𝐌𝐄𝐍𝐔
+┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
+
+┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
+┣‣ ${prefix}sᴇᴛʙɢᴍᴘɪᴄ
+
+┣‣ ${prefix}sᴇᴛᴛʜᴜᴍʙ
+
+┣‣ ${prefix}ᴄʟᴇᴀʀᴀʟʟ
+
+┣‣ ${prefix}ᴛᴏʙᴄ
+
+┣‣ ${prefix}ʙᴄ
+
+┣‣ ${prefix}ɢᴇᴛǫᴜᴏᴛᴇᴅ
+
+┣‣ ${prefix}ʀᴇsᴛᴀʀᴛ
+
+┣‣ ${prefix}ᴛᴇʀᴍ
+
+┣‣ ${prefix}ʙʟᴏᴄᴋ
+
+┣‣ ${prefix}ᴜɴʙʟᴏᴄᴋ
+
+┣‣ ${prefix}ʟᴇᴀᴠᴇᴀʟʟ
+
+┣‣ ${prefix}ᴀᴅᴅᴄᴍᴅ
+
+┣‣ ${prefix}ᴅᴇʟᴄᴍᴅ
+
+┣‣ ${prefix}ᴊᴀᴅɪʙᴏᴛ
+
+┣‣ ${prefix}ʟɪsᴛᴊᴀᴅɪʙᴏᴛ
+
+┣‣ ${prefix}sᴛᴏᴘᴊᴀᴅɪʙᴏᴛ
+
+┣‣ ${prefix}ᴇxɪғ
+
+┣‣ ${prefix}ᴊᴏɪɴ
+
+┣‣ ${prefix}ʀᴇᴛᴜʀɴ
+
+┣‣ ${prefix}ᴘᴜʙʟɪᴄ
+
+┣‣ ${prefix}sᴇʟғ
+
+┣‣ ${prefix}ʀᴇᴀᴅᴀʟʟ
+┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
+
+
+┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
+    𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃 𝐌𝐄𝐍𝐔
+┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
+
+┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
+┣‣ ${prefix}ᴘʟᴀʏ
+
+┣‣ ${prefix}ʏᴛᴍᴘ3
+
+┣‣ ${prefix}ʏᴛᴍᴘ4
+
+┣‣ ${prefix}ɪɢᴅʟ
+
+┣‣ ${prefix}ʏᴛsᴇᴀʀᴄʜ
+
+┣‣ ${prefix}ɪɢsᴛᴏʀʏ
+
+┣‣ ${prefix}sᴄᴘʟᴀʏ
+
+┣‣ ${prefix}ᴘɪɴᴛᴇʀᴇsᴛ
+
+┣‣ ${prefix}ᴛᴇʟᴇsᴛɪᴄᴋᴇʀ
+
+┣‣ ${prefix}ɢɪᴛʜᴜʙsᴇᴀʀᴄʜ
+
+┣‣ ${prefix}ɢᴏᴏɢʟᴇɪᴍᴀɢᴇ
+
+┣‣ ${prefix}ʏᴛᴅᴇsᴋ
+
+┣‣ ${prefix}ʟʏʀɪᴄ
+
+┣‣ ${prefix}ᴘʟᴀʏsᴛᴏʀᴇ
+
+┣‣ ${prefix}ᴍᴇᴅɪᴀғɪʀᴇ
+
+┣‣ ${prefix}ғʙ
+
+┣‣ ${prefix}ᴛɪᴋᴛᴏᴋɴᴏᴡɴ
+
+┣‣ ${prefix}ᴛɪᴋᴛᴏᴋᴀᴜᴅɪᴏ
+
+┣‣ ${prefix}ᴛɪᴋᴛᴏᴋᴅʟ
+
+┣‣ ${prefix}ᴛᴡɪᴛᴛᴇʀ
+
+┣‣ ${prefix}ᴛɪɴʏᴜʀʟ
+
+┣‣ ${prefix}ɢᴏᴏɢʟᴇ
+┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
+
+
+┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
+       𝐄𝐗𝐓𝐑𝐀 𝐌𝐄𝐍𝐔
+┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
+
+┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
+┣‣ ${prefix}ᴄʜᴀᴛ
+
+┣‣ ${prefix}ғɪᴛɴᴀʜᴘᴄ
+
+┣‣ ${prefix}ᴄᴏɴᴛᴀᴄᴛ
+
+┣‣ ${prefix}ғᴏʀᴡᴀʀᴅ
+
+┣‣ ${prefix}ғᴏʀᴡᴀʀᴅᴠɪᴅᴇᴏ
+
+┣‣ ${prefix}ғᴏʀᴡᴀʀᴅᴀᴜᴅɪᴏ
+┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
+
+
+┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
+     𝐒𝐓𝐎𝐑𝐀𝐆𝐄 𝐌𝐄𝐍𝐔 
+┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
+
+┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
+┣‣ ${prefix}ᴀᴅᴅᴠɴ
+
+┣‣ ${prefix}ᴀᴅᴅᴠɪᴅᴇᴏ
+
+┣‣ ${prefix}ᴀᴅᴅᴠɪᴅᴇᴏ
+
+┣‣ ${prefix}ᴀᴅᴅsᴛɪᴄᴋᴇʀ
+
+┣‣ ${prefix}ʟɪsᴛᴠɴ
+
+┣‣ ${prefix}ʟɪsᴛᴠɪᴅᴇᴏ
+
+┣‣ ${prefix}ʟɪsᴛɪᴍᴀɢᴇ
+
+┣‣ ${prefix}ʟɪsᴛsᴛɪᴄᴋᴇʀ
+
+┣‣ ${prefix}ᴅᴇʟᴠɴ
+
+┣‣ ${prefix}ᴅᴇʟᴠɪᴅᴇᴏ
+
+┣‣ ${prefix}ᴅᴇʟɪᴍᴀɢᴇ
+
+┣‣ ${prefix}ᴅᴇʟsᴛɪᴄᴋᴇʀ
+┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
+
+
+┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
+         𝐄𝐃𝐈𝐓 𝐌𝐄𝐍𝐔 
+┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
+
+┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
+┣‣${prefix}sᴇᴄᴠɴ
+
+┣‣ ${prefix}sᴇᴄᴠɪᴅᴇᴏ
+
+┣‣ ${prefix}ᴛᴏᴍᴘ3
+
+┣‣ ${prefix}ᴛᴏᴍᴘ4
+
+┣‣ ${prefix}ᴛᴏɪᴍɢ
+
+┣‣ ${prefix}ʙᴀʙʏ
+
+┣‣ ${prefix}ʙᴀss
+
+┣‣ ${prefix}ʀᴇᴠᴇʀsᴇ
+
+┣‣ ${prefix}sʟᴏᴡ
+
+┣‣ ${prefix}sǫᴜɪʀʀᴇʟ
+
+┣‣ ${prefix}ʙʟᴜʙ
+
+┣‣ ${prefix}ғᴀᴛ
+
+┣‣ ${prefix}ɪᴍᴀɢᴇᴛᴏᴜʀʟ
+
+┣‣ ${prefix}ᴍᴇ
+
+┣‣ ${prefix}ɴɪɢʜᴛᴄᴏʀᴇ
+
+┣‣ ${prefix}ᴄᴍ
+
+┣‣ ${prefix}ғᴀsᴛ
+
+┣‣ ${prefix}ɢᴇᴍᴇs
+
+┣‣ ${prefix}sʟᴏᴡᴠɪᴅ
+
+┣‣ ${prefix}ғᴀsᴛᴠɪᴅ
+ 
+┣‣ ${prefix}ʀᴇᴠᴇʀsᴇᴠɪᴅ
+
+┣‣ ${prefix}ᴛᴛs ᴇɴ
+┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
+
+
+┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
+       𝐆𝐑𝐎𝐔𝐏 𝐌𝐄𝐍𝐔
+┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
+
+┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
+┣‣ ${prefix}ᴀᴅᴅ
+
+┣‣ ${prefix}ᴋɪᴄᴋ
+
+┣‣ ${prefix}ᴘʀᴏᴍᴏᴛᴇ
+
+┣‣ ${prefix}ᴅᴇᴍᴏᴛᴇ
+
+┣‣ ${prefix}ᴅɪsᴀᴘᴘᴇᴀʀ
+
+┣‣ ${prefix}ɢʀᴏᴜᴘ
+
+┣‣ ${prefix}ᴀɴᴛɪʟɪɴᴋ
+
+┣‣ ${prefix}ᴛᴏᴛᴀɢ
+
+┣‣ ${prefix}ʜɪᴅᴇᴛᴀɢ
+
+┣‣ ${prefix}ᴛʀᴀɴsʟᴀᴛᴇ
+
+┣‣ ${prefix}ɢᴇᴛᴅᴇsᴋɢᴄ
+
+┣‣ ${prefix}ɢᴇᴛʙɪᴏ
+
+┣‣ ${prefix}ɢᴇᴛᴘᴘ
+
+┣‣ ${prefix}ɢᴇᴛɴᴀᴍᴇ
+┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
+
+
+┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
+      𝐌𝐀𝐊𝐄𝐑 𝐌𝐄𝐍𝐔
+┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
+
+ ᴛʜᴇʀᴇ ɪs ᴀᴘɪ ɪssᴜᴇ !
+ ʙᴇᴄᴜᴀsᴇ
+ ɪᴛ ᴡɪʟʟ ʙᴇ ɴᴏᴛ ᴡᴏʀᴋ
+ ʀᴇᴀᴅʏ sᴏᴏɴ...
+┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
+┣‣ ${prefix}sʜᴀᴅᴏᴡ
+
+ ┣‣ ${prefix}ᴄᴜᴘ
+
+ ┣‣ ${prefix}ᴄᴜᴘ1
+
+ ┣‣ ${prefix}ʀᴏᴍᴀɴᴄᴇ
+
+ ┣‣ ${prefix}sᴍᴏᴋᴇ
+
+ ┣‣ ${prefix}ʙᴜʀɴᴘᴀᴘᴇʀ
+
+ ┣‣ ${prefix}ʟᴏᴠᴇᴍᴇssᴀɢᴇ
+
+ ┣‣ ${prefix}ᴜɴᴅᴇʀɢʀᴀss
+
+ ┣‣ ${prefix}ʟᴏᴠᴇ
+
+ ┣‣ ${prefix}ᴄᴏғғᴇ
+
+ ┣‣ ${prefix}ᴡᴏᴏᴅʜᴇᴀʀᴛ
+
+ ┣‣ ${prefix}ᴡᴏᴏᴅᴇɴʙᴏᴀʀᴅ
+
+ ┣‣ ${prefix}sᴜᴍᴍᴇʀ3ᴅ
+
+ ┣‣ ${prefix}ᴡᴏʟғᴍᴇᴛᴀʟ
+
+ ┣‣ ${prefix}ɴᴀᴛᴜʀᴇ3ᴅ
+
+ ┣‣ ${prefix}ᴜɴᴅᴇʀᴡᴀᴛᴇʀ
+
+ ┣‣ ${prefix}ɢᴏʟᴅᴇʀʀᴏsᴇ
+
+ ┣‣ ${prefix}sᴜᴍᴍᴇʀɴᴀᴛᴜʀᴇ
+
+ ┣‣ ${prefix}ʟᴇᴛᴛᴇʀʟᴇᴀᴠᴇs
+
+ ┣‣ ${prefix}ɢʟᴏᴡɪɴɢɴᴇᴏɴ
+
+ ┣‣ ${prefix}ғᴀʟʟʟᴇᴀᴠᴇs
+
+ ┣‣ ${prefix}ғʟᴀᴍᴍɪɴɢ
+
+ ┣‣ ${prefix}ʜᴀʀʀʏᴘᴏᴛᴛᴇʀ
+
+ ┣‣ ${prefix}ᴄᴀʀᴠᴇᴅᴡᴏᴏᴅ
+
+ ┣‣ ${prefix}ᴛɪᴋᴛᴏᴋ
+
+ ┣‣ ${prefix}ᴀʀᴄᴀᴅᴇ8ʙɪᴛ
+
+ ┣‣ ${prefix}ɢᴀʟᴀxʏᴡᴀʟʟᴘᴀᴘᴇʀ
+
+ ┣‣ ${prefix}ʟɪɢʜᴛᴛᴇxᴛ
+
+ ┣‣ ${prefix}ʙᴇᴀᴜᴛɪғᴜʟғʟᴏᴡᴇʀ
+
+ ┣‣ ${prefix}ᴘᴜᴘᴘʏᴄᴜᴛᴇ
+
+ ┣‣ ${prefix}ʀᴏʏᴀʟᴛᴇxᴛ
+
+ ┣‣ ${prefix}ʜᴇᴀʀᴛsʜᴀᴘᴇᴅ
+ 
+ ┣‣ ${prefix}ʙɪʀᴛʜᴅᴀʏᴄᴀᴋᴇ
+
+ ┣‣ ${prefix}ɢʟᴏssʏᴄʜʀᴏᴍᴇ
+
+ ┣‣ ${prefix}ɢʀᴇᴇɴʙᴜsʜ
+
+ ┣‣ ${prefix}ᴍᴇᴛᴀʟʟᴏɢᴏ
+
+ ┣‣ ${prefix}ɴᴏᴇʟᴛᴇxᴛ
+
+ ┣‣ ${prefix}ɢʟɪᴛᴛᴇʀɢᴏʟᴅ
+
+ ┣‣ ${prefix}ᴛᴇxᴛᴄᴀᴋᴇ
+
+ ┣‣ ${prefix}sᴛᴀʀᴛsɴɪɢʜᴛ
+
+ ┣‣ ${prefix}ᴡᴏᴏᴅᴇɴ3ᴅ
+
+ ┣‣ ${prefix}ᴛᴇxᴛʙʏɴᴀᴍᴇ
+
+ ┣‣ ${prefix}ᴡʀɪᴛᴇɢᴀʟᴀᴄʏ
+
+ ┣‣ ${prefix}ɢᴀʟᴀxʏʙᴀᴛ
+
+ ┣‣ ${prefix}sɴᴏᴡ3ᴅ
+
+ ┣‣ ${prefix}ʙɪʀᴛʜᴅᴀʏᴅᴀʏ
+
+ ┣‣ ${prefix}ɢᴏʟᴅᴘʟᴀʏʙᴜᴛᴛᴏɴ
+
+ ┣‣ ${prefix}sɪʟᴠᴇʀᴘʟᴀʏʙᴜᴛᴛᴏɴ
+
+ ┣‣ ${prefix}ғʀᴇᴇғɪʀᴇ
+ ┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
+
+ 
+┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
+   𝐌𝐀𝐊𝐄𝐑 𝐌𝐄𝐍𝐔 𝐓𝐖𝐎
+┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
+
+ ᴛʜᴇʀᴇ ɪs ᴀᴘɪ ɪssᴜᴇ !
+ ʙᴇᴄᴜᴀsᴇ
+ ɪᴛ ᴡɪʟʟ ʙᴇ ɴᴏᴛ ᴡᴏʀᴋ
+ ʀᴇᴀᴅʏ sᴏᴏɴ..
+┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
+┣‣ ${prefix}ʙʟᴀᴄᴋᴘɪɴᴋ
+
+ ┣‣ ${prefix}ɴᴇᴏɴ
+
+ ┣‣ ${prefix}ɢʀᴇᴇɴɴᴇᴏɴ
+
+ ┣‣ ${prefix}ᴀᴅᴠᴀɴᴄᴇɢʟᴏᴡ
+
+ ┣‣ ${prefix}ʙᴀᴛᴛʟᴇғɪᴇʟᴅ4
+
+ ┣‣ ${prefix}ᴘᴜʙɢ
+
+ ┣‣ ${prefix}ᴡᴇᴛɢʟᴀss
+
+ ┣‣ ${prefix}ᴍᴜʟᴛɪᴄᴏʟᴏʀ3ᴅ
+
+ ┣‣ ${prefix}ᴡᴀᴛᴇʀᴄᴏʟᴏʀ
+
+ ┣‣ ${prefix}ʟᴜxᴜʀʏɢᴏʟᴅ
+
+ ┣‣ ${prefix}ɢᴀʟᴀxʏsᴛʏʟᴇ
+
+ ┣‣ ${prefix}ʜᴏʟᴏɢʀᴀᴍ3ᴅ
+
+ ┣‣ ${prefix}ɢʀᴇᴇɴɴᴇᴏɴ
+
+ ┣‣ ${prefix}ғᴜᴛᴜʀᴇɴᴇᴏɴ
+
+ ┣‣ ${prefix}sᴀɴᴅᴡʀɪᴛɪɴɢ
+
+ ┣‣ ${prefix}sᴀɴᴅsᴜᴍᴍᴇʀ
+
+ ┣‣ ${prefix}sᴀɴᴅᴇɴɢʀᴀᴠᴇᴅ
+
+ ┣‣ ${prefix}ᴍᴇᴛᴀʟᴅᴀʀᴋ
+
+ ┣‣ ${prefix}ɴᴇᴏɴʟɪɢʜᴛ
+
+ ┣‣ ${prefix}ʜᴏʟᴏɢʀᴀᴘʜɪᴄ
+
+ ┣‣ ${prefix}ᴛᴇxᴛ1917
+
+ ┣‣ ${prefix}ᴍɪɴɪᴏɴ
+
+ ┣‣ ${prefix}ᴅᴇʟᴜxᴇsɪʟᴠᴇʀ
+
+ ┣‣ ${prefix}ɴᴇᴡʏᴇᴀʀᴄᴀʀᴅ
+
+ ┣‣ ${prefix}ʙʟᴏᴏᴅғʀᴏsᴛᴇᴅ
+
+ ┣‣ ${prefix}ʜᴀʟʟᴏᴡᴇᴇɴ
+
+ ┣‣ ${prefix}ᴊᴏᴋᴇʀʟᴏɢᴏ
+
+ ┣‣ ${prefix}ғɪʀᴇᴡᴏʀᴋsᴘᴀʀᴋʟᴇ
+
+ ┣‣ ${prefix}ɴᴀᴛᴜʀᴇʟᴇᴀᴠᴇs
+
+ ┣‣ ${prefix}ʙᴏᴋᴇʜ
+
+ ┣‣ ${prefix}ᴛᴏxɪᴄ
+
+ ┣‣ ${prefix}sᴛʀᴀᴡʙᴇʀʀʏ
+
+ ┣‣ ${prefix}ʙᴏx3ᴅ
+
+ ┣‣ ${prefix}ʀᴏᴀᴅᴡᴀʀɴɪɴɢ
+
+ ┣‣ ${prefix}ʙʀᴇᴀᴋᴡᴀʟʟ
+
+ ┣‣ ${prefix}ɪᴄᴇᴄᴏʟᴅ
+
+ ┣‣ ${prefix}ʟᴜxᴜʀʏ
+
+ ┣‣ ${prefix}ᴄʟᴏᴜᴅ
+
+ ┣‣ ${prefix}sᴜᴍᴍᴇʀsᴀɴᴅ
+
+ ┣‣ ${prefix}ʜᴏʀʀᴏʀʙʟᴏᴏᴅ
+
+ ┣‣ ${prefix}ᴛʜᴜɴᴅᴇʀ
+
+ ┣‣ ${prefix}ᴘᴏʀɴʜᴜʙ
+
+ ┣‣ ${prefix}ɢʟɪᴛᴄʜ
+
+ ┣‣ ${prefix}ᴀᴠᴇɴɢᴇʀ
+
+ ┣‣ ${prefix}sᴘᴀᴄᴇ
+
+ ┣‣ ${prefix}ɴɪɴᴊᴀʟᴏɢᴏ
+
+ ┣‣ ${prefix}ᴍᴀʀᴠᴇʟsᴛᴜᴅɪᴏ
+
+ ┣‣ ${prefix}ʟɪᴏɴʟᴏɢᴏ
+
+ ┣‣ ${prefix}ᴡᴏʟғʟᴏɢᴏ
+
+ ┣‣ ${prefix}sᴛᴇᴇʟ3ᴅ
+ 
+ ┣‣ ${prefix}ᴡᴀʟʟɢʀᴀᴠɪᴛʏ
+ ┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
+
+ 
+┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
+     𝐓𝐀𝐔𝐑𝐔𝐒 𝐂𝐑𝐄𝐃𝐈𝐓𝐒
+┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
+
+┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
+┣‣ wa.me/918157849715
+
+┣‣ wa.me/919961050829
+┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
+
+
+┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
+             𝐑𝐔𝐋𝐄𝐒
+┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
+
+┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
+┣‣ ᴅᴏɴ'ᴛ sᴘᴀᴍ ʙᴏᴛ
+
+┣‣ ᴅᴏɴ'ᴛ ᴄᴀʟʟ ʙᴏᴛ
+
+┣‣ ᴅᴏɴ'ᴛ ᴍɪss ᴜsᴇ ʙᴏᴛ
+
+┣‣ ᴀɴʏ ᴘʀᴏʙʟᴇᴍ ᴄᴏɴᴛᴀᴄᴛ
+┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
+
+
+ `
+imeg = imeu.message.imageMessage
+res = await bosco.prepareMessageFromContent(from,{
+  "productMessage": {
+  "product": {
+  "productImage": imeg,
+  "productId": "1", 
+  "title": "ᴀʟʟ ᴍᴇɴᴜ",
+"description": `${taurusallmenu}`, 
+"priceAmount1000": "10000",
+"descriptionCount": "1",
+  "productImageCount": "1",
+  },
+  "businessOwnerJid": "919961050829@s.whatsapp.net",
+  "contextInfo": {
+  "forwardingScore": 9999,
+  "isForwarded": true
+  }
+  }
+  }, {quoted: {
+				  key: {
+				   fromMe: false,
+				   participant: `0@s.whatsapp.net`, // Fake sender Jid
+				   remoteJid: "status@broadcast"
+				  },
+				  message: {
+				   orderMessage: {
+				    itemCount: 111, //
+				    status: 1,
+				    surface: 1,
+				    message: `ʜᴇʏ ${pushname}`,
+				    orderTitle: '999999999', // Idk what this does
+				    sellerJid: `0@s.whatsapp.net` // Seller
+				   }
+				  }
+				 }
+				})
+  bosco.relayWAMessage(res)
+  break
         case 'anime':
               let wipu = (await axios.get(`https://raw.githubusercontent.com/Arya-was/endak-tau/main/${command}.json`)).data
               let wipi = wipu[Math.floor(Math.random() * (wipu.length))]
@@ -2830,43 +3395,24 @@ var but = [
               break
         case 'song':
         case 'play':
-               if (args.length < 1) return reply('*What do you want to search?*')
-               teks = args.join(' ')
-               if (!teks.endsWith("-doc")){
-               res = await yts(`${teks}`).catch(e => {
-               reply('*The Query Error You Entered Does Not Exist*')
-               })
-               let songs = `🦋 ${res.all[0].title} 🦋`
-               res = await y2mateA(res.all[0].url).catch(e => {
-               reply('Error When Entering Y2mate Web')
-               })
-               var _0x2c75a0=_0x4d6d;function _0x4d6d(_0x2b1769,_0x21c3c2){var _0x153505=_0x1535();return _0x4d6d=function(_0x4d6d8d,_0x40af97){_0x4d6d8d=_0x4d6d8d-0xed;var _0x36b55b=_0x153505[_0x4d6d8d];return _0x36b55b;},_0x4d6d(_0x2b1769,_0x21c3c2);}function _0x1535(){var _0x24fca7=['390232xVQaKf','link','8rImlLB','3gfkzDQ','*ᴛᴀᴜʀᴜs*','https://youtu.be/4mWfR23qFuA','5976270lAwpRH','6486516WpxoaX','5501440ZANpfi','2204027fHMkvQ','552FJxEKq','6076480iuGcuq','output','1626lOzEoW','audio/mp4'];_0x1535=function(){return _0x24fca7;};return _0x1535();}(function(_0x1cbcd6,_0x679289){var _0x286c3a=_0x4d6d,_0x39ba5b=_0x1cbcd6();while(!![]){try{var _0x27ca30=parseInt(_0x286c3a(0xf5))/0x1*(parseInt(_0x286c3a(0xf2))/0x2)+-parseInt(_0x286c3a(0xf0))/0x3*(-parseInt(_0x286c3a(0xed))/0x4)+parseInt(_0x286c3a(0xfa))/0x5+-parseInt(_0x286c3a(0xf8))/0x6+-parseInt(_0x286c3a(0xfb))/0x7+parseInt(_0x286c3a(0xf4))/0x8*(parseInt(_0x286c3a(0xf9))/0x9)+-parseInt(_0x286c3a(0xee))/0xa;if(_0x27ca30===_0x679289)break;else _0x39ba5b['push'](_0x39ba5b['shift']());}catch(_0x24cdd9){_0x39ba5b['push'](_0x39ba5b['shift']());}}}(_0x1535,0x895aa),sendFileFromUrl(res[0x0][_0x2c75a0(0xf3)],audio,{'quoted':mek,'thumbnail':taurus,'contextInfo':{'externalAdReply':{'title':''+songs,'body':_0x2c75a0(0xf6),'mediaType':0x2,'mediaUrl':_0x2c75a0(0xf7),'thumbnail':taurus},'mimetype':_0x2c75a0(0xf1),'filename':res[0x0][_0x2c75a0(0xef)]}}));
-               }
-               if (teks.endsWith("-doc")){
-               const tec = teks.split("-doc")
-               res = await yts(`${tec}`).catch(e => {
-               reply('*The Query Error You Entered Does Not Exist*')
-               })
-               reply(`🦋 ${res.all[0].title} 🦋`)
-               let thumbInfo = `
-📜 Tɪᴛʟᴇ : ${res.all[0].title}
-?? Tʏᴘᴇ : mp3
-📬 Iᴅ : ${res.all[0].videoId}
-🌐 Pᴜʙʟɪᴄᴀᴛɪᴏɴ : ${res.all[0].ago}
-🎞️ Wᴀᴛᴄʜᴇᴅ : ${res.all[0].views}
-⚖️ Dᴜʀᴀᴛɪᴏɴ : ${res.all[0].timestamp}
-🎥 Cʜᴀɴɴᴇʟ : ${res.all[0].author.name}
-🖇️ Lɪɴᴋ : ${res.all[0].author.url}
-
-*Pʟᴇᴀsᴇ Wᴀɪᴛ Sᴏɴɢ Lᴏᴀᴅɪɴɢ....*`
-
-               sendFileFromUrl(res.all[0].image, image, {quoted: ftroli, thumbnail: Buffer.alloc(0), caption: thumbInfo})
-               res = await y2mateA(res.all[0].url).catch(e => {
-               reply('*Error When Entering Y2mate Web*')
-               })
-               sendFileFromUrl(res[0].link, document, {quoted: ftroli, mimetype: 'audio/mp3', filename: res[0].output})
-               }
-               break
+                            if (args.length === 0) return reply(`ᴡʀᴏɴɢ ᴋᴇʏ *${prefix}play/song* ɴᴀᴍᴇ ᴏғ sᴏɴɢ `)
+                            const playy = await axios.get(`https://bx-hunter.herokuapp.com/api/yt/search?query=${body.slice(6)}&apikey=${HunterApi}`)
+                            const mulaikah = playy.data.result[0].url
+                            try {
+                                reply(mess.wait)
+                                yta(mulaikah)
+                                .then((res) => {
+                                    const { dl_link, thumb, title, filesizeF, filesize } = res
+                                    axios.get(`https://tinyurl.com/api-create.php?url=${dl_link}`)
+                                    .then(async (a) => {
+                                    if (Number(filesize) >= 30000) return sendMediaURL(from, thumb, `‣ *ᴘʟᴀʏ sᴏɴɢ*\n\n‣ *ᴛɪᴛʟᴇ* : ${title}\n‣ *ᴛʏᴘᴇ* : ᴍᴘ3\n*ғɪʟᴇ sɪᴢᴇ* : ${filesizeF}\n*ʟɪɴᴋ* : ${a.data}\n\n*sᴏʀʀʏ ᴅᴜʀᴀᴛɪᴏɴ ᴇxᴄᴇᴇᴅᴇᴅ ᴛʜᴇ ᴍᴀx ʟɪᴍɪᴛ, ᴘʟᴇᴀsᴇ ᴄʟɪᴄᴋ ᴛʜᴇ ʟɪɴᴋ ᴀʙᴏᴠᴇ*`)
+                                    sendFileFromUrl(dl_link, document, {mimetype: 'audio/mp3', filename: `${title}.mp3`, quoted: ftroli, contextInfo: { forwardingScore: 508, isForwarded: true, externalAdReply:{title:title,body:"ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ ᴡᴀᴛᴄʜ ᴏɴ ʏᴛ",mediaType:"2",thumbnail:getBuffer(thumb),mediaUrl:"https://youtu.be/4mWfR23qFuA"}}}).catch(() => reply(mess.error.api))
+                                    })
+                                })
+                            } catch (err) {
+                                reply(mess.error.api)
+                            }
+                            break
             case 'totag':
 			if (!isGroup) return reply(`*Send Only Group*`)
             if ((isMedia && !mek.message.videoMessage || isQuotedSticker) && args.length == 0) {
