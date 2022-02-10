@@ -532,6 +532,21 @@ const fvid = {
             const ftroli = {
                   key: {participant: "0@s.whatsapp.net", ...(from ? { groupJid: "120363042182512544@g.us" } : {})},message: { "orderMessage": { "itemCount" : '299992', "status": '1', "surface": '1', "message": `${fake}`, "orderTitle": 'Bang', "thumbnail": taurus, "sellerJid": '0@s.whatsapp.net'}}}
             //FAKEREPLY VIDEO
+            const fmen = {
+	key : {
+                          participant : '0@s.whatsapp.net'
+                        },
+       message: {
+                    orderMessage: {
+                            itemCount : 2006,
+                            status: 1,
+                            surface : 1,
+                            message: `🦋 𝐓 𝐀 𝐔 𝐑 𝐔 𝐒 🦋`, //© TAURUS
+                            thumbnail: fs.readFileSync('./taurus.jpg'), //Gambarnye
+                            sellerJid: '0@s.whatsapp.net' 
+                          }
+                        }
+                      }
             const fvideo = {
                   key: {fromMe: false,participant: `62895619083555@s.whatsapp.net`, ...(from ? { remoteJid: "16505434800@s.whatsapp.net" } : {}) },message: { "videoMessage": { "title":"fake","h": `Hmm`,'seconds': '359996400', 'caption': `${fake}`,'jpegThumbnail': fs.readFileSync('./life.jpg')}}}
             //FAKEREPLY GROUPINVITE
@@ -2740,7 +2755,7 @@ bosco.sendMessage(from, taurus1, MessageType.buttonsMessage, { quoted: ftroli, c
 
  ‣ ʏᴏᴜ ɪɴғᴏ : ${num.line_type} - ${num.country_name} - ${num.carrier}_`
 `
-sendButDocument(from, `${menu}`, "*©TAURUS*", fs.readFileSync('./Taurus/Taurus'), {mimetype:Mimetype.pdf, thumbnail:fs.readFileSync('./media/image/banner.jpg'), filename:`${jmn} - ${week} - ${calender}`}, [{buttonId:`command`,buttonText:{displayText:'𝐇𝐄𝐋𝐏 𝐋𝐈𝐒𝐓'},type:1},{buttonId:`owner`,buttonText:{displayText:'𝐃𝐄𝐕𝐄𝐋𝐎𝐏𝐄𝐑'},type:1},{buttonId:`script`,buttonText:{displayText:'𝐒𝐂𝐑𝐈𝐏𝐓'},type:1}], {quoted:fmen, contextInfo: { mentionedJid: [dtod,otod,stod], forwardingScore: 508, isForwarded: true, externalAdReply:{title:`ʜᴇʏ ${pushname}`,body:`*ᴇɴᴊᴏʏ ᴏᴜʀ ɴᴇᴡ ᴛᴀᴜʀᴜs ᴠ4.0`,mediaType:"2",thumbnail:ofrply,mediaUrl:`https://youtu.be/4mWfR23qFuA`}}})
+sendButDocument(from, `${menu}`, "*©TAURUS*", fs.readFileSync('./Taurus/Taurus'), {mimetype:Mimetype.pdf, thumbnail:fs.readFileSync('./media/image/banner.jpg'), filename:`${jmn} - ${week} - ${calender}`}, [{buttonId:`command`,buttonText:{displayText:'𝐇𝐄𝐋𝐏 𝐋𝐈𝐒𝐓'},type:1},{buttonId:`owner`,buttonText:{displayText:'𝐃𝐄𝐕𝐄𝐋𝐎𝐏𝐄𝐑'},type:1},{buttonId:`script`,buttonText:{displayText:'𝐒𝐂𝐑𝐈𝐏𝐓'},type:1}], {quoted:fmen, contextInfo: { mentionedJid: [stod], forwardingScore: 508, isForwarded: true, externalAdReply:{title:`ʜᴇʏ ${pushname}`,body:`*ᴇɴᴊᴏʏ ᴏᴜʀ ɴᴇᴡ ᴛᴀᴜʀᴜs ᴠ4.0`,mediaType:"2",thumbnail:ofrply,mediaUrl:`https://youtu.be/4mWfR23qFuA`}}})
 break
 case 'command':
  stod = `${sender}`
