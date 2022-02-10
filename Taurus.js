@@ -2789,7 +2789,7 @@ bosco.sendMessage(from, taurus1, MessageType.buttonsMessage, { quoted: ftroli, c
 
  ‣ ʏᴏᴜ ɪɴғᴏ : ${num.line_type} - ${num.country_name} - ${num.carrier}_`
 `
-sendButDocument(from, `${menu}`, "*_© Taurus v4.0_*", fs.readFileSync('./Taurus/root'), {mimetype:Mimetype.pdf, thumbnail:fs.readFileSync('./media/image/banner.jpg'), filename:`${jmn} - ${week} - ${calender}`}, [{buttonId:`command`,buttonText:{displayText:'𝐇𝐄𝐋𝐏 𝐋𝐈𝐒𝐓'},type:1},{buttonId:`owner`,buttonText:{displayText:'𝐃𝐄𝐕𝐄𝐋𝐎𝐏𝐄𝐑'},type:1},{buttonId:`script`,buttonText:{displayText:'𝐒𝐂𝐑𝐈𝐏𝐓'},type:1}], {quoted:fmen, contextInfo: { mentionedJid: [stod], forwardingScore: 508, isForwarded: true, externalAdReply:{title:`ʜᴇʏ ${pushname}`,body:`*ᴇɴᴊᴏʏ ᴏᴜʀ ɴᴇᴡ ᴛᴀᴜʀᴜs ᴠ4.0`,mediaType:"2",thumbnail:dfrply,mediaUrl:`https://youtu.be/4mWfR23qFuA`}}})
+sendButDocument(from, `${menu}`, "*_© Dcode Denpa_*", fs.readFileSync('./sampah/Denpa'), {mimetype:Mimetype.pdf, thumbnail:fs.readFileSync('./media/image/banner.jpg'), filename:`${jmn} - ${week} - ${calender}`}, [{buttonId:`command`,buttonText:{displayText:'LIST MENU'},type:1},{buttonId:`owner`,buttonText:{displayText:'DEVELOPER'},type:1},{buttonId:`script`,buttonText:{displayText:'SOURCE CODE'},type:1}], {quoted:fmen, contextInfo: { mentionedJid: [dtod,otod,stod], forwardingScore: 508, isForwarded: true, externalAdReply:{title:`${tampilUcapan} ${pushname}`,body:`*click here to play music`,mediaType:"2",thumbnail:ofrply,mediaUrl:`https://youtu.be/uQiF1yOnzDg`}}})
 break
 case 'command':
  stod = `${sender}`
@@ -4642,3 +4642,6 @@ console.log('[',color('TEXT','teal'),']',`Message : ${budy} From`, color(pushnam
         }
 	}
 }
+
+
+
