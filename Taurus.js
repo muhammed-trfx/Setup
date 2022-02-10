@@ -291,7 +291,7 @@ module.exports = bosco = async (bosco, mek) => {
 		pporang = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
 		      }
 		const taurus = await getBuffer(pporang)
-		const dfrply = await getBuffer(pporang)
+		const ofrply = await getBuffer(pporang)
 		
 		        
         const isUrl = (url) => {
