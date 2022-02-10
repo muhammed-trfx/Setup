@@ -477,8 +477,8 @@ headerType: 6
 /}
 bosco.sendMessage(id, buttonMessages, MessageType.buttonsMessage, options)
 /}*/
-//Button ocument
-const Sendbutdocument = async(id, text1, desc1, file1, doc1, but = [], options = {}) => {
+//Button document
+const sendButDocument = async(id, text1, desc1, media, doc1, but = [], options = {}) => {
 media = file1
 kma = doc1
 mhan = await bosco.prepareMessage(from, media, document, kma)
