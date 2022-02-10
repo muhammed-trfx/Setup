@@ -66,6 +66,7 @@ const a = '‣'
 hit_today = []
 banChats = false
 offline = false
+typemenu = 'templateLocation'
 
 let fakeimage = fs.readFileSync("./media/wpmobile.jpg")
 let setting = JSON.parse(fs.readFileSync('./setting.json'))
@@ -206,6 +207,13 @@ module.exports = bosco = async (bosco, mek) => {
         const ownerNumber = setting.ownerNumber
 		const ownerName = setting.ownerName
 		const botName = setting.botName
+		let {
+    myweb,
+    thumbnail,
+    youtube,
+    github, 
+    donasi
+} = setting
 		const isGroup = from.endsWith('@g.us')
 		const sender = mek.key.fromMe ? bosco.user.jid : mek.key.remoteJid.endsWith('@g.us') ? mek.participant : mek.key.remoteJid
 		const totalchat = await bosco.chats.all()
@@ -2631,46 +2639,154 @@ bosco.sendMessage(from, taurus1, MessageType.buttonsMessage, { quoted: ftroli, c
              console.log(res)
 })
              break
-             case 'help':
-case 'taurus':
-case 'cmd':
-              groups = bosco.chats.array.filter(v => v.jid.endsWith('g.us'))
-        privat = bosco.chats.array.filter(v => v.jid.endsWith('s.whatsapp.net'))
-        totalChat = await bosco.chats.all()
-        bosco1 = await bosco.prepareMessage(from, taurus, location, {thumbnail: taurus})
-        bosco2 = bosco1.message["ephemeralMessage"] ? bosco1.message.ephemeralMessage : bosco1
-        timestampe = speed();
-        latensie = speed() - timestampe
- hehe = `
- ‣ ʜᴇʏ : @${sender.split("@")[0]}
- 
- ‣ ᴘʀɪᴠᴀᴛᴇ : ${privat.length}
+             case 'help':{
+if(m.isGroup){
+	if(typemenu == 'templateLocation'){
+var but = [
+          {
+            "urlButton": {
+              "displayText": "ʏᴏᴜᴛᴜʙᴇ",
+              "url": `${youtube}`
+            }
+          },
+          {
+            "quickReplayButton": {
+              "displayText": "ɢɪᴛ",              
+              "id": 'sourcecode'
 
- ‣ ɢʀᴏᴜᴘs : ${groups.length}
+            }
+          },
+          {
+            "quickReplyButton": {
+              "displayText": "ᴍᴇɴᴜ",
+"id": 'menu'
+            }
+          },
+          {
+            "quickReplyButton": {
+              "displayText": "ɢɪᴛʜᴜʙ",
+"id": 'github'
+            }
+          },
+{
+            "quickReplyButton": {
+              "displayText": "ᴏᴡɴᴇʀ",
+"id": 'owner'
+            }
+          }
+        ]
+        await bosco.send5ButLoc(from, lang.menunya(salam, pushname) , `© ${setting.ownerName}`,pp_bot, but )
+        }
+        if(typemenu == 'templateTenor'){
+         but = [
+          {
+            "urlButton": {
+              "displayText": "ʏᴏᴜᴛᴜʙᴇ",
+              "url": `${youtube}`
+            }
+          },
+          {
+            "quickReplayButton": {
+              "displayText": "ɢɪᴛ",              
+              "id": "sourcecode"
 
- ‣ ᴛᴏᴛᴀʟ : ${totalChat.length}
+            }
+          },
+          {
+            "urlButton": {
+              "displayText": "ɢɪᴛʜᴜʙ",
+"url": `${github}`
+            }
+          },
+          {
+            "quickReplyButton": {
+              "displayText": "ᴏᴡɴᴇʀ",
+"id": 'owner'
+            }
+          },
+{
+            "quickReplyButton": {
+              "displayText": "ᴍᴇɴᴜ",
+"id": 'menu'
+            }
+          }
+        ]
+         bosco.send5ButGif(from, lang.menunya(salam, pushname) , `© ${setting.ownerName}` ,pp_bot, but , {quoted: m})
+         }
+        } else {
+var but = [
+          {
+            "urlButton": {
+              "displayText": "ʏᴏᴜᴛᴜʙᴇ",
+              "url": `${youtube}`
+            }
+          },
+          {
+            "quickReplayButton": {
+              "displayText": "ɢɪᴛ",              
+              "id": 'sourcecode'
 
- ‣ sᴘᴇᴇᴅ : ${latensie.toFixed(4)}
+            }
+          },
+          {
+            "quickReplyButton": {
+              "displayText": "ᴍᴇɴᴜ",
+"id": 'menu'
+            }
+          },
+          {
+            "quickReplyButton": {
+              "displayText": "ɢɪᴛʜᴜʙ",
+"id": 'github'
+            }
+          },
+{
+            "quickReplyButton": {
+              "displayText": "ᴏᴡɴᴇʀ",
+"id": 'owner'
+            }
+          }
+        ]
+        await bosco.send5ButLoc(from, lang.menunya(salam, pushname) , `© ${setting.ownerName}`,pp_bot, but )
+        }
+        if(typemenu == 'templateTenor'){
+         but = [
+          {
+            "urlButton": {
+              "displayText": "ʏᴏᴜᴛᴜʙᴇ",
+              "url": `${youtube}`
+            }
+          },
+          {
+            "quickReplayButton": {
+              "displayText": "ɢɪᴛ",              
+              "id": "sourcecode"
 
- ‣ ʙᴀᴛᴛᴇʀʏ : ${baterai}%\n
-
- ${jmn} -  ${jmo}\n${week} - ${calender}
-`
-                  menubutton = [{buttonId:`${prefix}credits`,buttonText:{displayText:'ᴄʀᴇᴅɪᴛ'},type:1},
- {buttonId:`${prefix}owner`,buttonText:{displayText:'ᴏᴡɴᴇʀ'},type:1},
- {buttonId:`${prefix}menu`,buttonText:{displayText:'ʙᴀᴄᴋ ᴛᴏ ᴍᴇɴᴜ'},type:1}
-]
- 
-mhan = await bosco.prepareMessage(from, frply, taurus, {thumbnail: frply})
-const taurus3 = {
-locationMessage: mhan.message.locationMessage,
-contentText: `${hehe}`,
-footerText: `𝑳𝒐𝒗𝒆 𝑭𝒓𝒐𝒎 𝑻𝒂𝒖𝒓𝒖𝒔 🦋✨`,
-buttons: taurusbutton,
-headerType: 5
+            }
+          },
+          {
+            "urlButton": {
+              "displayText": "ɢɪᴛʜᴜʙ",
+"url": `${github}`
+            }
+          },
+          {
+            "quickReplyButton": {
+              "displayText": "ᴏᴡɴᴇʀ",
+"id": 'owner'
+            }
+          },
+{
+            "quickReplyButton": {
+              "displayText": "ᴍᴇɴᴜ",
+"id": 'menu'
+            }
+          }
+        ]
+        await bosco.send5ButLoc(from, `Hai kak ${pushname} 👋, saya *${setting.botName}* ` + '\n\n' + lang.listMenu(time, salam, pushname, prefix) , `© ${setting.ownerName}`,pp_bot, but )
 }
-bosco.sendMessage(_.jid, buff, MessageType.buttonsMessage, { quoted: ftroli, mimetype: 'image/jpeg', ptt: false, contextInfo: { forwardingScore: 1, isForwarded: true, externalAdReply:{title: `🦋 𝐓 𝐀 𝐔 𝐑 𝐔 𝐒 🦋`,body:"",mediaType:"2",thumbnail: dfrply, mediaUrl:"https://youtu.be/4mWfR23qFuA"}}})
-             break 
+}
+        break  
        case 'ss':
 				reply(mess.wait)
 					sendMediaURL(from, `https://bx-hunter.herokuapp.com/api/ssweb?url=${args[0]}&apikey=${HunterApi}`)
