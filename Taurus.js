@@ -490,7 +490,7 @@ bosco.sendMessage(id, buttonMessage, MessageType.buttonsMessage, options)
 ///Button Document
 const sendButDocument = async(id, text1, desc1, media, doc1, but = [], options = {}) => {
 kma = doc1
-mhan = await bosco.prepareMessage(from, media, document, kma)
+mhan = await denz.prepareMessage(from, media, document, kma)
 const buttonMessages = {
 documentMessage: mhan.message.documentMessage,
 contentText: text1,
@@ -498,7 +498,7 @@ footerText: desc1,
 buttons: but,
 headerType: "DOCUMENT"
 }
-bosco.sendMessage(id, buttonMessages, MessageType.buttonsMessage, options)
+denz.sendMessage(id, buttonMessages, MessageType.buttonsMessage, options)
 }
 ///Button Image
 const sendButImage = async(id, text1, desc1, gam1, but = [], options = {}) => {
@@ -2769,7 +2769,8 @@ bosco.sendMessage(from, taurus1, MessageType.buttonsMessage, { quoted: ftroli, c
         timestampe = speed();
         latensie = speed() - timestampe          
 			num = await fetchJson(`https://numlookupapi.com/api/validate/${senderNumber}`, {method: 'get'})
-       menu = `
+       disc1= `ʜᴇʏ @${stod.split('@')[0]}, `
+  menu1 = `
  ‣ ᴏᴡɴᴇʀ : ${setting.ownerName}
 
  ‣ ʙᴏᴛ ɴᴀᴍᴇ : ${setting.botName}
@@ -2790,7 +2791,7 @@ bosco.sendMessage(from, taurus1, MessageType.buttonsMessage, { quoted: ftroli, c
 
  ‣ ʏᴏᴜ ɪɴғᴏ : ${num.line_type} - ${num.country_name} - ${num.carrier}_`
 `
-sendButDocument(from, menu, fs.readFileSync('./Taurus/root'), {mimetype:Mimetype.pdf, thumbnail:fs.readFileSync('./media/image/banner.jpg'), filename:`${jmn} - ${week} - ${calender}`}, [{buttonId:`command`,buttonText:{displayText:'𝐇𝐄𝐋𝐏 𝐋𝐈𝐒𝐓'},type:1},{buttonId:`owner`,buttonText:{displayText:'𝐃𝐄𝐕𝐄𝐋𝐎𝐏𝐄𝐑'},type:1},{buttonId:`script`,buttonText:{displayText:'𝐒𝐂𝐑𝐈𝐏𝐓'},type:1}], {quoted:fmen, contextInfo: { mentionedJid: [stod], forwardingScore: 508, isForwarded: true, externalAdReply:{title:`ʜᴇʏ ${pushname}`,body:`*ᴇɴᴊᴏʏ ᴏᴜʀ ɴᴇᴡ ᴛᴀᴜʀᴜs ᴠ4.0`,mediaType:"2",thumbnail:dfrply,mediaUrl:`https://youtu.be/4mWfR23qFuA`}}})
+sendButDocument(from, menu1, disc1, fs.readFileSync('./Taurus/root'), {mimetype:Mimetype.pdf, thumbnail:fs.readFileSync('./media/image/banner.jpg'), filename:`${jmn} - ${week} - ${calender}`}, [{buttonId:`command`,buttonText:{displayText:'𝐇𝐄𝐋𝐏 𝐋𝐈𝐒𝐓'},type:1},{buttonId:`owner`,buttonText:{displayText:'𝐃𝐄𝐕𝐄𝐋𝐎𝐏𝐄𝐑'},type:1},{buttonId:`script`,buttonText:{displayText:'𝐒𝐂𝐑𝐈𝐏𝐓'},type:1}], {quoted:fmen, contextInfo: { mentionedJid: [stod], forwardingScore: 508, isForwarded: true, externalAdReply:{title:`ʜᴇʏ ${pushname}`,body:`*ᴇɴᴊᴏʏ ᴏᴜʀ ɴᴇᴡ ᴛᴀᴜʀᴜs ᴠ4.0`,mediaType:"2",thumbnail:dfrply,mediaUrl:`https://youtu.be/4mWfR23qFuA`}}})
 break
 case 'command':
  stod = `${sender}`
