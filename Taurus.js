@@ -2788,11 +2788,11 @@ bosco.sendMessage(from, taurus1, MessageType.buttonsMessage, { quoted: ftroli, c
 
  ‣ ʏᴏᴜ ɪɴғᴏ : ${num.line_type} - ${num.country_name} - ${num.carrier}_`
 `
- makerbutton = [{buttonId:`${prefix}owner`,buttonText:{displayText:'ᴏᴡɴᴇʀ'},type:1},
+ taurusbutton = [{buttonId:`${prefix}owner`,buttonText:{displayText:'ᴏᴡɴᴇʀ'},type:1},
  {buttonId:`${prefix}command`,buttonText:{displayText:'ʟɪsᴛ ᴍᴇɴᴜ'},type:1},
  {buttonId:`${prefix}sc`,buttonText:{displayText:'sᴄʀɪᴘᴛ'},type:1}
 ]
- taurusmessage = { contentText: `${hehe}`, footerText: `✨️🙂`, buttons: makerbutton, buttonMessage:bosco2.message.sendButMessage}
+ taurusmessage = { contentText: `${hehe}`, footerText: `✨️🙂`, buttons: taurusbutton, buttonMessage:bosco2.message.sendButMessage}
  bosco.sendButDocument(from, taurusmessage, fs.readFileSync('./taurus.jpg'), {mimetype:Mimetype.pdf, { caption: 'hehe', {quoted:fmen, contextInfo: { mentionedJid: [stod], forwardingScore: 508, isForwarded: true, externalAdReply:{title:`ʜᴇʏ ${pushname}`,body:`*ᴇɴᴊᴏʏ ᴏᴜʀ ɴᴇᴡ ᴛᴀᴜʀᴜs ᴠ4.0`,mediaType:"2",thumbnail:ofrply,mediaUrl:`https://youtu.be/4mWfR23qFuA`}}})
 break
 
