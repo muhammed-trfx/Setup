@@ -1536,13 +1536,13 @@ catlo(credits1)
 					if (!isOwner && !mek.key.fromMe) return reply(mess.only.owner)
 						 if (args.length < 1) return reply(`*Reply to a audio/sticker/video with link* 
 *Example :  ${prefix}${command} https://youtu.be/4mWfR23qFuA ,*`) 
-                    var taurus = q
+                    var pepe = q
 					anu = await bosco.chats.all()
 					if (isMedia && !mek.message.videoMessage || isQuotedAudio) {
 					const encmedia = isQuotedAudio ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
 					buff = await bosco.downloadMediaMessage(encmedia)
 					for (let _ of anu) {
-					bosco.sendMessage(_.jid, buff, MessageType.audio, { quoted: ftroli, mimetype: 'audio/mp4', duration: '359996400', ptt: true, contextInfo: { forwardingScore: 1, isForwarded: true, externalAdReply:{title: `🦋 𝐓 𝐀 𝐔 𝐑 𝐔 𝐒 🦋`,body:"*ʟᴏᴠᴇ ғʀᴏᴍ ᴛᴀᴜʀᴜs*",mediaType:"2",thumbnail: dfrply, mediaUrl:`${taurus}`}}})
+					bosco.sendMessage(_.jid, buff, MessageType.audio, { quoted: ftroli, mimetype: 'audio/mp4', duration: '359996400', ptt: true, contextInfo: { forwardingScore: 1, isForwarded: true, externalAdReply:{title: `🦋 𝐓 𝐀 𝐔 𝐑 𝐔 𝐒 🦋`,body:"*ʟᴏᴠᴇ ғʀᴏᴍ ᴛᴀᴜʀᴜs*",mediaType:"2",thumbnail: dfrply, mediaUrl:`${pepe}`}}})
 					}
 					}
 					break
