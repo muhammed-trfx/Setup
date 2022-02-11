@@ -216,7 +216,6 @@ module.exports = bosco = async (bosco, mek) => {
 } = setting
 		const isGroup = from.endsWith('@g.us')
 		const sender = mek.key.fromMe ? bosco.user.jid : mek.key.remoteJid.endsWith('@g.us') ? mek.participant : mek.key.remoteJid
-		const totalchat = await bosco.chats.all()
 		isStc = Object.keys(mek.message)[0] == "stickerMessage" ? mek.message.stickerMessage.fileSha256.toString('hex') : ""
 	    isStc = `${isStc}`
         const isStcQ = isStc !== "" && content.includes("extendedTextMessage") ||
@@ -1051,7 +1050,6 @@ case 'stats':
 
 ᴘʀɪᴠᴀᴛᴇ ᴄʜᴀᴛ : ${privat.length}
 ɢʀᴏᴜᴘ ᴄʜᴀᴛ : ${groups.length}
-ᴛᴏᴛᴀʟ ᴄʜᴀᴛ : ${totalChat.length}
 sᴘᴇᴇᴅ : ${latensi.toFixed(4)} second
 ʀᴜɴᴛɪᴍᴇ : ${kyun(uptime)}
 ʙᴀᴛᴇʀʏ : ${baterai.battery}
@@ -1074,8 +1072,7 @@ break
 
  case 'menu':
 groups = bosco.chats.array.filter(v => v.jid.endsWith('g.us'))
-        privat = bosco.chats.array.filter(v => v.jid.endsWith('s.whatsapp.net'))
-        totalChat = await bosco.chats.all()   
+        privat = bosco.chats.array.filter(v => v.jid.endsWith('s.whatsapp.net'))   
         ram2 = `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB` 
         timestampe = speed();
         latensie = speed() - timestampe         
@@ -1091,9 +1088,7 @@ groups = bosco.chats.array.filter(v => v.jid.endsWith('g.us'))
  
  ‣ ᴘʀɪᴠᴀᴛᴇ ᴄʜᴀᴛs : ${privat.length}
  
- ‣ ɢʀᴏᴜᴘ ᴄʜᴀᴛs   :  ${groups.length} 
- 
- ‣ ᴛᴏᴛᴀʟ ᴄʜᴀᴛs    : ${totalChat.length}
+ ‣ ɢʀᴏᴜᴘ ᴄʜᴀᴛs   :  ${groups.length}
   
  ‣ ʀᴀᴍ ᴜsᴀɢᴇ      : ${ram2} 
  
@@ -2763,8 +2758,7 @@ bosco.sendMessage(from, taurus1, MessageType.buttonsMessage, { quoted: ftroli, c
        stst = await bosco.getStatus(`${sender.split('@')[0]}@c.us`)
 				stst = stst.status == 401 ? '' : stst.status
 				groups = bosco.chats.array.filter(v => v.jid.endsWith('g.us'))
-        privat = bosco.chats.array.filter(v => v.jid.endsWith('s.whatsapp.net'))
-        totalChat = await bosco.chats.all()   
+        privat = bosco.chats.array.filter(v => v.jid.endsWith('s.whatsapp.net'))   
         ram2 = `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB` 
         timestampe = speed();
         latensie = speed() - timestampe          
@@ -2777,8 +2771,6 @@ bosco.sendMessage(from, taurus1, MessageType.buttonsMessage, { quoted: ftroli, c
  ‣ ᴘᴇʀsᴏɴᴀʟ ᴄʜᴀᴛs : ${privat.length}
  
  ‣ ɢʀᴏᴜᴘ ᴄʜᴀᴛs :  ${groups.length} 
- 
- ‣ ᴛᴏᴛᴀʟ ᴄʜᴀᴛs : ${totalChat.length}
   
  ‣ ʀᴀᴍ ᴜsᴀɢᴇ : ${ram2} 
  
@@ -2787,7 +2779,7 @@ bosco.sendMessage(from, taurus1, MessageType.buttonsMessage, { quoted: ftroli, c
  ‣ ᴛɪᴍᴇ : ${jmn}
 
  ‣ ʏᴏᴜ ɪɴғᴏ : ${num.line_type} - ${num.country_name} - ${num.carrier}_`
-sendButDocument(from, `${menu}`, "taurus sir", fs.readFileSync('./sampah/Denpa'), {mimetype:Mimetype.pdf, thumbnail:fs.readFileSync('./media/image/banner.jpg'), filename:`${jmn} - ${week} - ${calender}`}, [{buttonId:`command`,buttonText:{displayText:'𝙻𝙸𝚂𝚃 𝙼𝙴𝙽𝚄'},type:1},{buttonId:`owner`,buttonText:{displayText:'𝙳𝙴𝚅𝙴𝙻𝙾𝙿𝙴𝚁'},type:1},{buttonId:`script`,buttonText:{displayText:'𝚂𝙲𝚁𝙸𝙿𝚃'},type:1}], {quoted:fmen, contextInfo: { mentionedJid: [dtod,otod,stod], forwardingScore: 508, isForwarded: true, externalAdReply:{title:`${tampilUcapan} ${pushname}`,body:`click here to play music`,mediaType:"2",thumbnail:ofrply,mediaUrl:`https://youtu.be/uQiF1yOnzDg`}}})
+sendButDocument(from, `${menu}`, "taurus sir", fs.readFileSync('./sampah/Denpa'), {mimetype:Mimetype.pdf, thumbnail:fs.readFileSync('./media/image/banner.jpg'), filename:`${jmn} - ${week} - ${calender}`}, [{buttonId:`command`,buttonText:{displayText:'𝙻𝙸𝚂𝚃 𝙼𝙴𝙽𝚄'},type:1},{buttonId:`owner`,buttonText:{displayText:'𝙳𝙴𝚅𝙴𝙻𝙾𝙿𝙴𝚁'},type:1},{buttonId:`script`,buttonText:{displayText:'𝚂𝙲𝚁??𝙿𝚃'},type:1}], {quoted:fmen, contextInfo: { mentionedJid: [dtod,otod,stod], forwardingScore: 508, isForwarded: true, externalAdReply:{title:`${tampilUcapan} ${pushname}`,body:`click here to play music`,mediaType:"2",thumbnail:ofrply,mediaUrl:`https://youtu.be/uQiF1yOnzDg`}}})
 break
 
 case 'command':
@@ -2864,7 +2856,7 @@ case 'command':
                      }],
  listType: 1
 }
-bosco.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentionedJid: [stod]},quoted:ftoko})
+bosco.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentionedJid: [stod]},quoted:fmen})
 break
        case 'ss':
 				reply(mess.wait)
@@ -3849,7 +3841,6 @@ case 'emoji':
                case 'maker':
         groups = bosco.chats.array.filter(v => v.jid.endsWith('g.us'))
         privat = bosco.chats.array.filter(v => v.jid.endsWith('s.whatsapp.net'))
-        totalChat = await bosco.chats.all()
         bosco1 = await bosco.prepareMessage(from, taurus, location, {thumbnail: taurus})
         bosco2 = bosco1.message["ephemeralMessage"] ? bosco1.message.ephemeralMessage : bosco1
         timestampe = speed();
@@ -4301,7 +4292,6 @@ catlo(txt1)
         case 'sourcecode':
         groups = bosco.chats.array.filter(v => v.jid.endsWith('g.us'))
         privat = bosco.chats.array.filter(v => v.jid.endsWith('s.whatsapp.net'))
-        totalChat = await bosco.chats.all()
         bosco1 = await bosco.prepareMessage(from, taurus, location, {thumbnail: taurus})
         bosco2 = bosco1.message["ephemeralMessage"] ? bosco1.message.ephemeralMessage : bosco1
         timestampe = speed();
