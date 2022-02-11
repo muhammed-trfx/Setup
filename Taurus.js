@@ -2788,7 +2788,7 @@ bosco.sendMessage(from, taurus1, MessageType.buttonsMessage, { quoted: ftroli, c
 
  ‣ ʏᴏᴜ ɪɴғᴏ : ${num.line_type} - ${num.country_name} - ${num.carrier}_`
 `
-makerbutton = [{buttonId:`${prefix}owner`,buttonText:{displayText:'ᴏᴡɴᴇʀ'},type:1},
+ makerbutton = [{buttonId:`${prefix}owner`,buttonText:{displayText:'ᴏᴡɴᴇʀ'},type:1},
  {buttonId:`${prefix}command`,buttonText:{displayText:'ʟɪsᴛ ᴍᴇɴᴜ'},type:1},
  {buttonId:`${prefix}sc`,buttonText:{displayText:'sᴄʀɪᴘᴛ'},type:1}
 ]
