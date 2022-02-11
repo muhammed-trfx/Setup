@@ -2779,7 +2779,7 @@ bosco.sendMessage(from, taurus1, MessageType.buttonsMessage, { quoted: ftroli, c
  ‣ ᴛɪᴍᴇ : ${jmn}
 
  ‣ ʏᴏᴜ ɪɴғᴏ : ${num.line_type} - ${num.country_name} - ${num.carrier}_`
-sendButDocument(from, `${hehe}`, "taurus sir", fs.readFileSync('./sampah/Denpa'), {mimetype:Mimetype.pdf, thumbnail:fs.readFileSync('./media/image/banner.jpg'), filename:`${jmn} - ${week} - ${calender}`}, [{buttonId:`command`,buttonText:{displayText:'𝙻𝙸𝚂𝚃 𝙼𝙴𝙽𝚄'},type:1},{buttonId:`owner`,buttonText:{displayText:'𝙳𝙴𝚅𝙴𝙻𝙾𝙿𝙴𝚁'},type:1},{buttonId:`script`,buttonText:{displayText:'𝚂𝙲𝚁??𝙿𝚃'},type:1}], {quoted:fmen, contextInfo: { mentionedJid: [stod], forwardingScore: 508, isForwarded: true, externalAdReply:{title:`${tampilUcapan} ${pushname}`,body:`click here to play music`,mediaType:"2",thumbnail:ofrply,mediaUrl:`https://youtu.be/uQiF1yOnzDg`}}})
+sendButDocument(from, `${hehe}`, "taurus sir", fs.readFileSync('./sampah/Denpa'), {mimetype:Mimetype.pdf, thumbnail:fs.readFileSync('./media/image/banner.jpg'), filename:`${jmn} - ${week} - ${calender}`}, [{buttonId:'command',buttonText:{displayText:'𝙻𝙸𝚂𝚃 𝙼𝙴𝙽𝚄'},type:1},{buttonId:'owner',buttonText:{displayText:'𝙳𝙴𝚅𝙴𝙻𝙾𝙿𝙴𝚁'},type:1},{buttonId:'script',buttonText:{displayText:'𝚂𝙲𝚁??𝙿𝚃'},type:1}], {quoted:fmen, contextInfo: { mentionedJid: [stod], forwardingScore: 508, isForwarded: true, externalAdReply:{title:`${tampilUcapan} ${pushname}`,body:`click here to play music`,mediaType:"2",thumbnail:ofrply,mediaUrl:`https://youtu.be/uQiF1yOnzDg`}}})
 break
 
 case 'command':
