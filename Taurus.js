@@ -189,7 +189,7 @@ module.exports = bosco = async (bosco, mek) => {
 		const type = Object.keys(mek.message)[0]        
 		const antibot = m.isBaileys
         const cmd = (type === 'conversation' && mek.message.conversation) ? mek.message.conversation : (type == 'imageMessage') && mek.message.imageMessage.caption ? mek.message.imageMessage.caption : (type == 'videoMessage') && mek.message.videoMessage.caption ? mek.message.videoMessage.caption : (type == 'extendedTextMessage') && mek.message.extendedTextMessage.text ? mek.message.extendedTextMessage.text : ''.slice(1).trim().split(/ +/).shift().toLowerCase()
-        body = (type === 'conversation' && mek.message.conversation.startsWith(prefix)) ? mek.message.conversation : (type == 'imageMessage') && mek.message[type].caption.startsWith(prefix) ? mek.message[type].caption : (type == 'videoMessage') && mek.message[type].caption.startsWith(prefix) ? mek.message[type].caption : (type == 'extendedTextMessage') && mek.message[type].text.startsWith(prefix) ? mek.message[type].text : (type == 'listResponseMessage') && mek.message[type].singleSelectReply.selectedRowId ? mek.message[type].singleSelectReply.selectedRowId : (type == 'buttonsResponseMessage') && mek.message[type].selectedButtonId ? mek.message[type].selectedButtonId : (type == 'stickerMessage') && (getCmd(mek.message[type].fileSha256.toString('base64')) !== null && getCmd(mek.message[type].fileSha256.toString('base64')) !== undefined) ? getCmd(mek.message[type].fileSha256.toString('base64')) : ""
+        body = (type === 'conversation' && mek.message.conversation.startsWith(prefix)) ? mek.message.conversation : (type == 'imageMessage') && mek.message[type].caption.startsWith(prefix) ? mek.message[type].caption : (type == 'videoMessage') && mek.message[type].caption.startsWith(prefix) ? mek.message[type].caption : (type == 'extendedTextMessage') && mek.message[type].text.startsWith(prefix) ? mek.message[type].text : (type == 'listResponseMessage') && mek.message[type].singleSelectReply.selectedrowId ? mek.message[type].singleSelectReply.selectedrowId : (type == 'buttonsResponseMessage') && mek.message[type].selectedbuttonId ? mek.message[type].selectedbuttonId : (type == 'stickerMessage') && (getCmd(mek.message[type].fileSha256.toString('base64')) !== null && getCmd(mek.message[type].fileSha256.toString('base64')) !== undefined) ? getCmd(mek.message[type].fileSha256.toString('base64')) : ""
 		budy = (type === 'conversation') ? mek.message.conversation : (type === 'extendedTextMessage') ? mek.message.extendedTextMessage.text : ''
 		const command = body.replace(prefix, '').trim().split(/ +/).shift().toLowerCase()
 		const args = body.trim().split(/ +/).slice(1)
@@ -267,7 +267,7 @@ module.exports = bosco = async (bosco, mek) => {
 
 
         // here button function
-        selectedButton = (type == 'buttonsResponseMessage') ? mek.message.buttonsResponseMessage.selectedButtonId : ''
+        selectedButton = (type == 'buttonsResponseMessage') ? mek.message.buttonsResponseMessage.selectedbuttonId : ''
 
         responseButton = (type == 'listResponseMessage') ? mek.message.listResponseMessage.title : ''
         
@@ -1133,13 +1133,13 @@ groups = bosco.chats.array.filter(v => v.jid.endsWith('g.us'))
                      {
                       "title": `${setting.ownerName}⁩`,
  rows: [
-                {title: '𝐆𝐑𝐎𝐔𝐏 𝐌𝐄𝐍𝐔', description: "ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴇ ᴛʜᴇ ɢʀᴏᴜᴘ ᴍᴇɴᴜ", RowId:"groupmenu"},  
-                {title: '𝐀𝐋𝐋 𝐌𝐄𝐍𝐔', description: "ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴇ ᴛʜᴇ ᴀʟʟ ᴍᴇɴᴜ", RowId:"allmenu"},   
-                {title: '𝐎𝐖𝐍𝐄𝐑 𝐌𝐄𝐍𝐔', description: "ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴇ ᴛʜᴇ ᴏᴡɴᴇʀ ᴍᴇɴᴜ", RowId:"ownermenu"}, 
-                {title: '𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃 𝐌𝐄𝐍𝐔', description: "ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴇ ᴛʜᴇ ᴅᴏᴡɴʟᴏᴀᴅ ᴍᴇɴᴜ", RowId:"downloadmenu"},  
-                {title: '𝐄𝐃𝐈𝐓 𝐌𝐄𝐍𝐔', description: "ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴇ ᴛʜᴇ ᴇᴅɪᴛ ᴍᴇɴᴜ", RowId:"editmenu"},                                {title: '𝐒𝐓𝐎𝐑𝐀𝐆𝐄 𝐌𝐄𝐍𝐔', description: "ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴇ ᴛʜᴇ sᴛᴏʀᴀɢᴇ ᴍᴇɴᴜ", RowId:"storagemenu"},
-                {title: '𝐄𝐗𝐓𝐑𝐀 𝐌𝐄𝐍𝐔', description: "ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴇ ᴛʜᴇ ᴇxᴛʀᴀ ᴍᴇɴᴜ", RowId:"extramenu"},                                           {title: '𝐑𝐔𝐋𝐄𝐒', description: "ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴇ ᴛʜᴇ ʀᴜʟᴇs ᴏғ ᴛʜᴇ ʙᴏᴛ", RowId:"rules"},                                        {title: '𝐌𝐀𝐊𝐄𝐑 𝐌𝐄𝐍𝐔', description: "ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴇ ᴍᴀᴋᴇʀ ᴍᴇɴᴜ", RowId:"maker"},
-                {title: '𝐎𝐖𝐍𝐄𝐑', description: "ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴇ ᴏᴡɴᴇʀ", RowId:"owner"},
+                {title: '𝐆𝐑𝐎𝐔𝐏 𝐌𝐄𝐍𝐔', description: "ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴇ ᴛʜᴇ ɢʀᴏᴜᴘ ᴍᴇɴᴜ", rowId:"groupmenu"},  
+                {title: '𝐀𝐋𝐋 𝐌𝐄𝐍𝐔', description: "ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴇ ᴛʜᴇ ᴀʟʟ ᴍᴇɴᴜ", rowId:"allmenu"},   
+                {title: '𝐎𝐖𝐍𝐄𝐑 𝐌𝐄𝐍𝐔', description: "ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴇ ᴛʜᴇ ᴏᴡɴᴇʀ ᴍᴇɴᴜ", rowId:"ownermenu"}, 
+                {title: '𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃 𝐌𝐄𝐍𝐔', description: "ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴇ ᴛʜᴇ ᴅᴏᴡɴʟᴏᴀᴅ ᴍᴇɴᴜ", rowId:"downloadmenu"},  
+                {title: '𝐄𝐃𝐈𝐓 𝐌𝐄𝐍𝐔', description: "ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴇ ᴛʜᴇ ᴇᴅɪᴛ ᴍᴇɴᴜ", rowId:"editmenu"},                                {title: '𝐒𝐓𝐎𝐑𝐀𝐆𝐄 𝐌𝐄𝐍𝐔', description: "ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴇ ᴛʜᴇ sᴛᴏʀᴀɢᴇ ᴍᴇɴᴜ", rowId:"storagemenu"},
+                {title: '𝐄𝐗𝐓𝐑𝐀 𝐌𝐄𝐍𝐔', description: "ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴇ ᴛʜᴇ ᴇxᴛʀᴀ ᴍᴇɴᴜ", rowId:"extramenu"},                                           {title: '𝐑𝐔𝐋𝐄𝐒', description: "ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴇ ᴛʜᴇ ʀᴜʟᴇs ᴏғ ᴛʜᴇ ʙᴏᴛ", rowId:"rules"},                                        {title: '𝐌𝐀𝐊𝐄𝐑 𝐌𝐄𝐍𝐔', description: "ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴇ ᴍᴀᴋᴇʀ ᴍᴇɴᴜ", rowId:"maker"},
+                {title: '𝐎𝐖𝐍𝐄𝐑', description: "ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴇ ᴏᴡɴᴇʀ", rowId:"owner"},
                         ]
                      }],
  listType: 1
@@ -1148,7 +1148,7 @@ bosco.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentio
 break
     
     case 'mode':
-buttonss = [{ButtonId: `public`, buttonText: {displayText: '𝐏𝐔𝐁𝐋𝐈𝐂'}, type: 1},{ButtonId: `self`, buttonText: {displayText: '𝐒𝐄𝐋𝐅'}, type: 1}]
+buttonss = [{buttonId: `public`, buttonText: {displayText: '𝐏𝐔𝐁𝐋𝐈𝐂'}, type: 1},{buttonId: `self`, buttonText: {displayText: '𝐒𝐄𝐋𝐅'}, type: 1}]
 const buMess = {
     contentText: "𝐒𝐄𝐋𝐅/𝐏𝐔𝐁𝐋𝐈𝐂",
     footerText: '𝐂𝐇𝐎𝐎𝐒𝐄 𝐌𝐎𝐃𝐄',
@@ -1534,10 +1534,10 @@ catlo(credits1)
          case 'gc':
        case 'group':
         rows = [
-           {title: '𝐎𝐏𝐄𝐍', description: "ᴛᴏ sᴇᴛ ᴇᴠᴇʀʏʙᴏᴅʏ ᴄᴀɴ sᴇɴᴅ ᴍᴇssᴀɢᴇ", RowId: `OPEN`},
-           {title: '𝐂𝐋𝐎𝐒𝐄', description: "ᴛᴏ sᴇᴛ ᴏɴʟʏ ᴀᴅᴍɪɴs ᴄᴀɴ sᴇɴᴅ ᴍᴇssᴀɢᴇ", RowId: `CLOSE`},
-           {title: '𝐎𝐍', description: "ᴛᴏ ᴛᴜʀɴ ᴏɴ ᴛʜᴇ ᴅɪsᴀᴘᴘᴇᴀʀɪɴɢ ᴍᴇssᴀɢᴇ", RowId: `on`},
-           {title: '𝐎𝐅𝐅', description: "ᴛᴏ ᴛᴜʀɴ ᴏғғ ᴛʜᴇ ᴅɪsᴀᴘᴘᴇᴀʀɪɴɢ ᴍᴇssᴀɢᴇ", RowId: `off`}]
+           {title: '𝐎𝐏𝐄𝐍', description: "ᴛᴏ sᴇᴛ ᴇᴠᴇʀʏʙᴏᴅʏ ᴄᴀɴ sᴇɴᴅ ᴍᴇssᴀɢᴇ", rowId: `OPEN`},
+           {title: '𝐂𝐋𝐎𝐒𝐄', description: "ᴛᴏ sᴇᴛ ᴏɴʟʏ ᴀᴅᴍɪɴs ᴄᴀɴ sᴇɴᴅ ᴍᴇssᴀɢᴇ", rowId: `CLOSE`},
+           {title: '𝐎𝐍', description: "ᴛᴏ ᴛᴜʀɴ ᴏɴ ᴛʜᴇ ᴅɪsᴀᴘᴘᴇᴀʀɪɴɢ ᴍᴇssᴀɢᴇ", rowId: `on`},
+           {title: '𝐎𝐅𝐅', description: "ᴛᴏ ᴛᴜʀɴ ᴏғғ ᴛʜᴇ ᴅɪsᴀᴘᴘᴇᴀʀɪɴɢ ᴍᴇssᴀɢᴇ", rowId: `off`}]
           section = [{title: "sᴜʙsᴄʀɪʙᴇ ᴛᴀᴜʀᴜsᴇᴅɪᴛs ғᴏʀ ɢᴇᴛ ᴛʜɪs ʙᴏᴛ", rows: rows}]
           button = {buttonText: 'SELECT', description: `\n\n*ɢʀᴏᴜᴘ [ᴏᴘᴇɴ/ᴄʟᴏsᴇ]*\n\n*ᴅɪsᴀᴘᴘᴇᴀʀ ᴍᴇssᴀɢᴇ [ᴏɴ/ᴏғғ]*`,
           sections: section, listType: 1}
@@ -2367,7 +2367,7 @@ break
          case 'pin':
               if (args.length < 1) return reply(`${prefix}Taurus Ser`)
               data = await fetchJson(`https://lolhuman.herokuapp.com/api/pinterest?apikey=${lolkey}&query=${q}`)
-              buttons = [{ButtonId: `${prefix + command} ${q}`,buttonText:{displayText: `ɴᴇxᴛ`},type:1}]
+              buttons = [{buttonId: `${prefix + command} ${q}`,buttonText:{displayText: `ɴᴇxᴛ`},type:1}]
               fs.writeFileSync(`./${sender}.jpeg`, await getBuffer(data.result))
               imageMsg = ( await bosco.prepareMessage(from, fs.readFileSync(`./${sender}.jpeg`), 'imageMessage', {thumbnail: Buffer.alloc(0)})).message.imageMessage
               buttonsMessage = {footerText:'Hello Sis Can i help u..', imageMessage: imageMsg,
@@ -2495,7 +2495,7 @@ ${repo.open_issues} Issue${repo.description ? `
               if (!q.includes('tiktok')) return reply(mess.error.Iv)
               data = await fetchJson(`https://api.lolhuman.xyz/api/tiktok?apikey=${lolkey}&url=${q}`)
               result = `*ɴɪᴄᴋɴᴀᴍᴇ*: ${data.result.author.nickname}\n*ʟɪᴋᴇ*: ${data.result.statistic.diggCount}\n*ᴄᴏᴍᴍᴇɴᴛs*: ${data.result.statistic.commentCount}\n*sʜᴀʀᴇ*: ${data.result.statistic.shareCount}\n*ᴠɪᴇᴡs*: ${data.result.statistic.playCount}\n*ᴅᴇsᴄ*: ${data.result.title}`
-              buttons = [{ButtonId: `${prefix}buttons3 ${q}`,buttonText:{displayText: `ᴠɪᴅᴇᴏ`},type:1},{ButtonId:`${prefix}buttons4 ${q}`,buttonText:{displayText:'ᴀᴜᴅɪᴏ'},type:1}]
+              buttons = [{buttonId: `${prefix}buttons3 ${q}`,buttonText:{displayText: `ᴠɪᴅᴇᴏ`},type:1},{buttonId:`${prefix}buttons4 ${q}`,buttonText:{displayText:'ᴀᴜᴅɪᴏ'},type:1}]
               fs.writeFileSync(`./${sender}.jpeg`, await getBuffer(data.result.thumbnail))
               imageMsg = ( await bosco.prepareMessage(from, fs.readFileSync(`./${sender}.jpeg`), 'imageMessage', {thumbnail: Buffer.alloc(0)})).message.imageMessage
               buttonsMessage = {footerText:'Choose a format below', imageMessage: imageMsg,
@@ -2707,7 +2707,7 @@ teks = `
 ‣ *ᴅᴇᴠɪᴄᴇ ᴍᴏᴅᴇʟ :-*
 ➪ ${bosco.user.phone.device_model}
 `
-                 taurusbutton = [{ButtonId:`${prefix}🙌`,buttonText:{displayText:'🙌'},type:1},
+                 taurusbutton = [{buttonId:`${prefix}🙌`,buttonText:{displayText:'🙌'},type:1},
 ]
 mhan = await bosco.prepareMessage(from, frply, video, {thumbnail: frply})
 const taurus1 = {
@@ -2722,7 +2722,7 @@ bosco.sendMessage(from, taurus1, MessageType.buttonsMessage, { quoted: ftroli, c
       case 'buttons5':
               const mathdare = dare[Math.floor(Math.random() * (dare.length))]
               result = `${mathdare}`
-              buttons = [{ButtonId: `${prefix}buttons6`,buttonText:{displayText: 'ᴛʀᴜᴛʜ'},type:1},{ButtonId:`${prefix}buttons5`,buttonText:{displayText:'ᴅᴀʀᴇ'},type:1},{ButtonId:`${prefix}tod`,buttonText:{displayText:'ᴛᴏᴅ'},type:1}]
+              buttons = [{buttonId: `${prefix}buttons6`,buttonText:{displayText: 'ᴛʀᴜᴛʜ'},type:1},{buttonId:`${prefix}buttons5`,buttonText:{displayText:'ᴅᴀʀᴇ'},type:1},{buttonId:`${prefix}tod`,buttonText:{displayText:'ᴛᴏᴅ'},type:1}]
               buttonsMessage = { contentText: `${result}`, footerText: 'Truth or challenge?', buttons: buttons, headerType: 1 }
               prep = await bosco.prepareMessageFromContent(from,{buttonsMessage},{})
               bosco.relayWAMessage(prep)
@@ -2730,7 +2730,7 @@ bosco.sendMessage(from, taurus1, MessageType.buttonsMessage, { quoted: ftroli, c
       case 'buttons6':
               const randomtruth = truth[Math.floor(Math.random() * truth.length)]
               result = `${randomtruth}`
-              buttons = [{ButtonId: `${prefix}buttons6`,buttonText:{displayText: 'ᴛʀᴜᴛʜ'},type:1},{ButtonId:`${prefix}buttons5`,buttonText:{displayText:'ᴅᴀʀᴇ'},type:1},{ButtonId:`${prefix}tod`,buttonText:{displayText:'ᴛᴏᴅ'},type:1}]
+              buttons = [{buttonId: `${prefix}buttons6`,buttonText:{displayText: 'ᴛʀᴜᴛʜ'},type:1},{buttonId:`${prefix}buttons5`,buttonText:{displayText:'ᴅᴀʀᴇ'},type:1},{buttonId:`${prefix}tod`,buttonText:{displayText:'ᴛᴏᴅ'},type:1}]
               buttonsMessage = { contentText: `${result}`, footerText: 'Truth or challenge?', buttons: buttons, headerType: 1 }
               prep = await bosco.prepareMessageFromContent(from,{buttonsMessage},{})
               bosco.relayWAMessage(prep)
@@ -2812,7 +2812,7 @@ bosco.sendMessage(from, taurus1, MessageType.buttonsMessage, { quoted: ftroli, c
  ‣ ᴛɪᴍᴇ : ${jmn}
 
  ‣ ʏᴏᴜ ɪɴғᴏ : ${num.line_type} - ${num.country_name} - ${num.carrier}_`
-sendButDocument(from, `${hehe}`, "taurus sir", fs.readFileSync('./sampah/Denpa'), {mimetype:Mimetype.pdf, thumbnail:fs.readFileSync('./media/image/banner.jpg'), filename:`${jmn} - ${week} - ${calender}`}, [{ButtonId:'command',buttonText:{displayText:'ʟɪsᴛ ᴍᴇɴᴜ'},type:1},{ButtonId:'owner',buttonText:{displayText:'ᴅᴇᴠᴇʟᴏᴘᴇʀ'},type:1},{ButtonId:'allmenu',buttonText:{displayText:'ᴀʟʟ ᴍᴇɴᴜ'},type:1},{ButtonId:'script',buttonText:{displayText:'sᴄʀɪᴘᴛ'},type:1}], {quoted:fmen, contextInfo: { mentionedJid: [stod], forwardingScore: 508, isForwarded: true, externalAdReply:{title:`${tampilUcapan} ${pushname}`,body:`click here to play music`,mediaType:"2",thumbnail:ofrply,mediaUrl:`https://youtu.be/uQiF1yOnzDg`}}})
+sendButDocument(from, `${hehe}`, "taurus sir", fs.readFileSync('./sampah/Denpa'), {mimetype:Mimetype.pdf, thumbnail:fs.readFileSync('./media/image/banner.jpg'), filename:`${jmn} - ${week} - ${calender}`}, [{buttonId:'command',buttonText:{displayText:'ʟɪsᴛ ᴍᴇɴᴜ'},type:1},{buttonId:'owner',buttonText:{displayText:'ᴅᴇᴠᴇʟᴏᴘᴇʀ'},type:1},{buttonId:'allmenu',buttonText:{displayText:'ᴀʟʟ ᴍᴇɴᴜ'},type:1},{buttonId:'script',buttonText:{displayText:'sᴄʀɪᴘᴛ'},type:1}], {quoted:fmen, contextInfo: { mentionedJid: [stod], forwardingScore: 508, isForwarded: true, externalAdReply:{title:`${tampilUcapan} ${pushname}`,body:`click here to play music`,mediaType:"2",thumbnail:ofrply,mediaUrl:`https://youtu.be/uQiF1yOnzDg`}}})
 break
 
 case 'command':
@@ -2828,62 +2828,62 @@ case 'command':
                           {
                               "title": "𝐒𝐂𝐑𝐈𝐏𝐓",
                               "discription": "ɢᴇᴛ ɢɪᴛ ᴏғ ʙᴏᴛ",
-                              "RowId": "script"
+                              "rowId": "script"
                            },
                            {
                               "title": "𝐒𝐏𝐄𝐄𝐃",
                               "discription": "ᴄʜᴇᴄᴋ sᴘᴇᴇᴅ ᴏғ ʙᴏᴛ",
-                              "RowId": "ping"
+                              "rowId": "ping"
                            },
                            {
                               "title": "𝐒𝐓𝐀𝐓𝐔𝐒",
                               "discription": "ʙᴏᴛs sᴛᴀᴛᴜs",
-                              "RowId": "status"
+                              "rowId": "status"
                            },
                            {
                               "title": "𝐂𝐑𝐄𝐀𝐓𝐎𝐑",
                               "discription": "ᴏᴡɴᴇʀ ᴏғ ʙᴏᴛ",
-                              "RowId": "creator"
+                              "rowId": "creator"
                            },
                            {
                               "title": "𝐉𝐀𝐃𝐈 𝐁𝐎𝐓",
                               "discription": "ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴀɴᴅ sᴄᴀɴ ǫʀ ᴛᴏ ᴜsᴇ ᴛʜɪs ʙᴏᴛ",
-                              "RowId": "jadibot"
+                              "rowId": "jadibot"
                            },
                            {
                               "title": "𝐀𝐋𝐋 𝐌𝐄𝐍𝐔",
                               "discription": "sʜᴏᴡ ᴀʟʟ ᴍᴇɴᴜ ᴏғ ʙᴏᴛ",
-                              "RowId": "allmenu"
+                              "rowId": "allmenu"
                            },
                            {
                               "title": "𝐑𝐔𝐍 𝐓𝐈𝐌𝐄",
                               "discription": "ᴛᴏ ᴋɴᴏᴡ ʀᴜɴᴛɪᴍᴇ",
-                              "RowId": "runtime"
+                              "rowId": "runtime"
                            },
                            {
                               "title": "𝐎𝐖𝐍𝐄𝐑 𝐌𝐄𝐍𝐔",
                               "discription": "ᴛᴏ ɢᴇᴛ ᴏᴡɴᴇʀ ᴍᴇɴᴜ ᴏғ ʙᴏᴛ",
-                              "RowId": "ownermenu"
+                              "rowId": "ownermenu"
                            },
                            {
                               "title": "𝐌𝐀𝐊𝐄𝐑 𝐌𝐄𝐍𝐔",
                               "discription": "ɢᴇᴛ ᴍᴀᴋᴇʀᴍᴇɴᴜ",
-                              "RowId": "maker"
+                              "rowId": "maker"
                            },
                            {
                               "title": "𝐆𝐑𝐎𝐔𝐏 𝐌𝐄𝐍𝐔",
                               "discription": "ɢʀᴏᴜᴘ ᴍᴇɴᴜ ᴏғ ʙᴏᴛ",
-                              "RowId": "groupmenu"
+                              "rowId": "groupmenu"
                            },
                            {
                               "title": "𝐎𝐓𝐇𝐄𝐑 𝐌𝐄𝐍𝐔",
                               "discription": "ᴇxᴛʀᴀ ᴍᴇɴᴜ ᴏғ ʙᴏᴛ",
-                              "RowId": "extramenu"
+                              "rowId": "extramenu"
                            },
                            {
                               "title": "𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃 𝐌𝐄𝐍𝐔",
                               "discription": "ɪᴛs sʜᴏᴡs ᴅᴏᴡɴʟᴏᴀᴅ ᴍᴇɴᴜ",
-                              "RowId": "downloadmenu"
+                              "rowId": "downloadmenu"
                            }
                         ]
                      }],
@@ -2919,7 +2919,7 @@ break
 					break
       case 'tod':
               result =`*Truth Or Dare*\nPlayers are given the choice between answering questions honestly, or taking on the challenge given`
-              buttons = [{ButtonId: `${prefix}buttons6`,buttonText:{displayText: 'ᴛʀᴜᴛʜ'},type:1},{ButtonId:`${prefix}buttons5`,buttonText:{displayText:'ᴅᴀʀᴇ'},type:1},{ButtonId:`${prefix}tod`,buttonText:{displayText:'Tod'},type:1}]
+              buttons = [{buttonId: `${prefix}buttons6`,buttonText:{displayText: 'ᴛʀᴜᴛʜ'},type:1},{buttonId:`${prefix}buttons5`,buttonText:{displayText:'ᴅᴀʀᴇ'},type:1},{buttonId:`${prefix}tod`,buttonText:{displayText:'Tod'},type:1}]
               buttonsMessage = { contentText: `${result}`, footerText: 'Truth or challenge?', buttons: buttons, headerType: 1 }
               prep = await bosco.prepareMessageFromContent(from,{buttonsMessage},{})
               bosco.relayWAMessage(prep)
@@ -3458,7 +3458,7 @@ res = await bosco.prepareMessageFromContent(from,{
               let wipu = (await axios.get(`https://raw.githubusercontent.com/Arya-was/endak-tau/main/${command}.json`)).data
               let wipi = wipu[Math.floor(Math.random() * (wipu.length))]
               fs.writeFileSync(`./${sender}.jpeg`, await getBuffer(wipi))
-		      buttons = [{ButtonId: `${prefix + command}`,buttonText:{displayText: `next`},type:1},{ButtonId:`${prefix}owner`,buttonText:{displayText:'ᴏᴡɴᴇʀ'},type:1}]
+		      buttons = [{buttonId: `${prefix + command}`,buttonText:{displayText: `next`},type:1},{buttonId:`${prefix}owner`,buttonText:{displayText:'ᴏᴡɴᴇʀ'},type:1}]
               imageMsg = ( await bosco.prepareMessage(from, fs.readFileSync(`./${sender}.jpeg`), 'imageMessage', {thumbnail: Buffer.alloc(0)})).message.imageMessage
               buttonsMessage = {footerText:'© 𝐓 𝐀 𝐔 𝐑 𝐔 𝐒', imageMessage: imageMsg,
               contentText:`_Click Next to go to the next picture_`,buttons,headerType:4}
@@ -3890,9 +3890,9 @@ sᴏᴍᴇ ᴍᴀᴋᴇʀ ᴡɪʟʟ ɴᴏᴛ ᴡᴏʀᴋ
 
 ᴛᴀᴜʀᴜs
  `
- makerbutton = [{ButtonId:`${prefix}owner`,buttonText:{displayText:'ᴏᴡɴᴇʀ'},type:1},
- {ButtonId:`${prefix}txtit`,buttonText:{displayText:'ᴍᴀᴋᴇʀ ᴍᴇɴᴜ ᴏɴᴇ'},type:1},
- {ButtonId:`${prefix}makermenu`,buttonText:{displayText:'ᴍᴀᴋᴇʀ ᴍᴇɴᴜ ᴛᴡᴏ'},type:1}
+ makerbutton = [{buttonId:`${prefix}owner`,buttonText:{displayText:'ᴏᴡɴᴇʀ'},type:1},
+ {buttonId:`${prefix}txtit`,buttonText:{displayText:'ᴍᴀᴋᴇʀ ᴍᴇɴᴜ ᴏɴᴇ'},type:1},
+ {buttonId:`${prefix}makermenu`,buttonText:{displayText:'ᴍᴀᴋᴇʀ ᴍᴇɴᴜ ᴛᴡᴏ'},type:1}
 ]
  makermessage = { contentText: `${hehe}`, footerText: `ᴍᴀᴋᴇʀ ᴍᴇɴᴜ ʜᴀᴠᴇ ᴀᴘɪ ɪssᴜᴇ\n\nʙᴇᴄᴜᴀsᴇ ᴏғ ɪᴛ ᴡɪʟʟ ɴᴏᴛ ᴡᴏʀᴋ`, buttons: makerbutton, headerType: 6, locationMessage: bosco2.message.locationMessage}
  bosco.sendMessage(from, makermessage, MessageType.buttonsMessage, { caption: 'hehe', "contextInfo": { "mentionedJid" : [sender]},})
@@ -4339,9 +4339,9 @@ catlo(txt1)
  
 ${jmn} -  ${jmo}\n${week} - ${calender}
  `
- menubutton = [{ButtonId:`${prefix}credits`,buttonText:{displayText:'ᴄʀᴇᴅɪᴛ'},type:1},
- {ButtonId:`${prefix}owner`,buttonText:{displayText:'ᴏᴡɴᴇʀ'},type:1},
- {ButtonId:`${prefix}menu`,buttonText:{displayText:'ʙᴀᴄᴋ ᴛᴏ ᴍᴇɴᴜ'},type:1}
+ menubutton = [{buttonId:`${prefix}credits`,buttonText:{displayText:'ᴄʀᴇᴅɪᴛ'},type:1},
+ {buttonId:`${prefix}owner`,buttonText:{displayText:'ᴏᴡɴᴇʀ'},type:1},
+ {buttonId:`${prefix}menu`,buttonText:{displayText:'ʙᴀᴄᴋ ᴛᴏ ᴍᴇɴᴜ'},type:1}
 ]
  menumessage = { contentText: ` `, footerText: `${hehe}`, buttons: menubutton, headerType: 6, locationMessage: bosco2.message.locationMessage}
  bosco.sendMessage(from, menumessage, MessageType.buttonsMessage, { caption: 'hehe', "contextInfo": { "mentionedJid" : [sender]},})
