@@ -4699,6 +4699,16 @@ if (Number(oi2) >= 50) return reply('*Most!*')
 							reply(`*Send picture/video with caption ${prefix}stickerwm nama|author or tag images/videos that have been sent*\n*Note: Maximum video duration is 10 seconds*`)
 						}
 						break
+
+
+
+
+
+
+
+
+
+     
 case 'addrespon':
 			if (!isOwner && !mek.key.fromMe) return reply(mess.only.ownerB)
 				if (args.length < 1) return reply(`Penggunaan ${prefix}addrespon hai|hai juga`)
@@ -4891,16 +4901,6 @@ ${ttt}
 Giliran = @${tty.player1.split('@')[0]}`
  bosco.sendMessage(from, ucapan, text, {quoted: mek, contextInfo:{mentionedJid: [tty.player1,tty.player2]}})
 
-
-
-
-
-
-
-
-
-     
-default:
 if (budy.startsWith('=>')){
 if (!isOwner) return
 try {
