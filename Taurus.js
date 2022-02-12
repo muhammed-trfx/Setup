@@ -1,5 +1,5 @@
 const {
-    WAConnection,
+    WAConnection: _WAConnection,
 	MessageType,
 	Presence,
 	MessageOptions,
@@ -17,6 +17,7 @@ const {
 	Browsers,
 } = require("@adiwajshing/baileys")
 const moment = require("moment-timezone")
+const WAConnection = simple.WAConnection(_WAConnection)
 const speed = require('performance-now')
 const { spawn, exec, execSync } = require("child_process")
 const ffmpeg = require('fluent-ffmpeg')
@@ -3548,40 +3549,7 @@ res = await bosco.prepareMessageFromContent(from,{
 				})
   bosco.relayWAMessage(res)
   break
-  case 'ownerinfo':
-			 res = await bosco.prepareMessageFromContent(from,{
-"templateMessage": {
-						"hydratedTemplate": {
-							"hydratedContentText": `Hi ${pushname} \n\n${jmn} - ${week} ${weton} - ${calender}`,
-							"hydratedFooterText": `TAURUS-X3`,
-							"hydratedButtons": [
-								{
-									"urlButton": {
-										"displayText": "YOUTUBE",
-										"url": "https://youtube.com/TAURUSEDITS"
-									},
-									"index": 
-								},
-								{
-									"urlButton": {
-										"displayText": "GITHUB",
-										"url": "https://github.com/I-AM-MUHAMMED"
-									},
-									"index": 1
-								},
-								{
-									"urlButton": {
-										"displayText": "INSTAGRAM",
-										"url": "https://instagram.com/taurus.efx"
-									},
-									"index": 2
-								}
-							]
-						}
-					}
-				}, {}) 
-bosco.relayWAMessage(res)
-break
+  
         case 'anime':
               let wipu = (await axios.get(`https://raw.githubusercontent.com/Arya-was/endak-tau/main/${command}.json`)).data
               let wipi = wipu[Math.floor(Math.random() * (wipu.length))]
