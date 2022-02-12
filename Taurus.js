@@ -1,5 +1,5 @@
 const {
-    WAConnection: _WAConnection,
+    WAConnection,
 	MessageType,
 	Presence,
 	MessageOptions,
@@ -16,9 +16,7 @@ const {
 	processTime,
 	Browsers,
 } = require("@adiwajshing/baileys")
-const simple = require('./lib/simple.js')
 const moment = require("moment-timezone")
-const WAConnection = simple.WAConnection(_WAConnection)
 const speed = require('performance-now')
 const { spawn, exec, execSync } = require("child_process")
 const ffmpeg = require('fluent-ffmpeg')
@@ -42,7 +40,6 @@ const qrcodes = require('qrcode');
 const googleIt = require('google-it')
 const os = require('os');
 const hx = require('hxz-api')
-const client = new WAConnection()
 
 const { Menu, rulesBot } = require('./message/help.js')
 const { getBuffer, getGroupAdmins, generateMessageID, getRandom, runtime, pickRandom, sleep } = require('./lib/myfunc')
