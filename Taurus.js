@@ -284,6 +284,19 @@ module.exports = bosco = async (bosco, mek) => {
         	grup = bosco.prepareMessageFromContent(from, { "groupInviteMessage": { "groupJid": '6288213840883-1616169743@g.us', "inviteCode": 'https://chat.whatsapp.com/BzhyWkAEU0t8oVl3s8p94m', "groupName": `Bosco Family`, "footerText": "*Taurus Ser*", "jpegThumbnail": dfrply, "caption": teks}}, {quoted:fvideo})
             bosco.relayWAMessage(grup)
         }
+        idttt = []
+	    players1 = []
+	    players2 = []
+	    gilir = []
+	    for (let t of ky_ttt){
+	    idttt.push(t.id)
+	    players1.push(t.player1)
+	    players2.push(t.player2)
+	    gilir.push(t.gilir)
+	    }
+        const isTTT = isGroup ? idttt.includes(from) : false
+	    isPlayer1 = isGroup ? players1.includes(sender) : false
+        isPlayer2 = isGroup ? players2.includes(sender) : false
         try {
 		pporang = await bosco.getProfilePicture(`${sender.split('@')[0]}@s.whatsapp.net`)
 		      } catch {
