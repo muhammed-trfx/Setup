@@ -16,6 +16,7 @@ const {
 	processTime,
 	Browsers,
 } = require("@adiwajshing/baileys")
+const simple = require('./lib/simple.js')
 const moment = require("moment-timezone")
 const WAConnection = simple.WAConnection(_WAConnection)
 const speed = require('performance-now')
@@ -63,6 +64,8 @@ const atm = require("./lib/atm");
 const level = require("./lib/level");
 const afk = JSON.parse(fs.readFileSync('./lib/off.json'))
 const { isAfk, cekafk, addafk } = require('./lib/offline')
+const voting = JSON.parse(fs.readFileSync('./lib/voting.json'))
+const { addVote, delVote } = require('./lib/vote')
 const a = '‣'
 
 hit_today = []
@@ -940,6 +943,53 @@ const ftrol = {
         const isQuotedGif = type === 'extendedTextMessage' && content.includes('gifMessage')
          if (!isGroup && !isCmd) console.log('\x1b[1;31m~\x1b[1;37m>', '[\x1b[1;31mTEXT\x1b[1;37m]', time, color('Message'), 'from', color(sender.split('@')[0]), 'args :', color(args.length))
      	if (isCmd && isGroup) console.log('\x1b[1;31m~\x1b[1;37m>', '[\x1b[1;32mEXEC\x1b[1;37m]', time, color(command), 'from', color(sender.split('@')[0]), 'in', color(groupName), 'args :', color(args.length))
+     if(isGroup && !isVote) {
+        if (budy.toLowerCase() === 'vote'){
+        let vote = JSON.parse(fs.readFileSync(`./lib/${from}.json`))
+        let _votes = JSON.parse(fs.readFileSync(`./lib/vote/${from}.json`))  
+        let fil = vote.map(v => v.participant)
+        let id_vote = sender ? sender : '6285751056816@s.whatsapp.net'
+        if(fil.includes(id_vote)) {
+        return mentions('@'+sender.split('@')[0]+' Anda sudah vote', fil, true)
+        } else {
+        vote.push({
+            participant: id_vote,
+            voting: '✅'
+        })
+        fs.writeFileSync(`./lib/${from}.json`,JSON.stringify(vote))
+        let _p = []
+        let _vote = '*Vote* '+ '@'+ _votes[0].votes.split('@')[0] + `\n\n*Alasan*: ${_votes[0].reason}\n*Jumlah Vote* : ${vote.length} Vote\n*Durasi* : ${_votes[0].durasi} Menit\n\n` 
+        for(let i = 0; i < vote.length; i++) {
+        _vote +=  `@${vote[i].participant.split('@')[0]}\n*Vote* : ${vote[i].voting}\n\n`
+        _p.push(vote[i].participant)
+        }  
+        _p.push(_votes[0].votes)
+        mentions(_vote,_p,true)   
+        }
+        } else if (budy.toLowerCase() === 'devote'){
+        const vote = JSON.parse(fs.readFileSync(`./lib/${from}.json`))
+        let _votes = JSON.parse(fs.readFileSync(`./lib/vote/${from}.json`))  
+        let fil = vote.map(v => v.participant)
+        let id_vote = sender ? sender : '919961050829@s.whatsapp.net'
+        if(fil.includes(id_vote)) {
+        return mentions('@'+sender.split('@')[0]+' Anda sudah vote', fil, true)
+        } else {
+        vote.push({
+            participant: id_vote,
+            voting: '❌'
+        })
+        fs.writeFileSync(`./lib/${from}.json`,JSON.stringify(vote))
+        let _p = []
+        let _vote = '*Vote* '+ '@'+ _votes[0].votes.split('@')[0] + `\n\n*Alasan*: ${_votes[0].reason}\n*Jumlah Vote* : ${vote.length} Vote\n*Durasi* : ${_votes[0].durasi} Menit\n\n` 
+        for(let i = 0; i < vote.length; i++) {
+        _vote +=  `@${vote[i].participant.split('@')[0]}\n*Vote* : ${vote[i].voting}\n\n`
+        _p.push(vote[i].participant)
+        }  
+        _p.push(_votes[0].votes)
+        mentions(_vote,_p,true)   
+        }
+    }
+}	
 		 if (!mek.key.fromMe && banChats === true) return
 
          
@@ -1050,6 +1100,25 @@ case 'developer':
 			 "contacts": ini_list 
 			 }, 'contactsArrayMessage', {quoted:ftroli})
 		     break
+		case 'delvote':
+            if(!mek.key.remoteJid) return
+            if(isVote) return reply('Tidak ada sesi Voting')
+            delVote(from)
+            reply('Sukses Menghapus sesi Voting Di Grup Ini')
+            break
+    case 'voting':
+            if(!isGroupAdmins && !mek.key.fromMe) return 
+            if(!isGroup) return reply(mess.only.group)
+            if (isVote) return reply('Sesi Voting Sedang Berlangsung Di Grup Ini')
+            if(!q) return reply('*Voting*\n\n'+ prefix+ 'voting @tag target | reason  | 1 (1 = 1 Menit)')
+            if (mek.message.extendedTextMessage.contextInfo.mentionedJid.length > 0 || mek.message.extendedTextMessage.contextInfo == null) {
+            let id = mek.message.extendedTextMessage.contextInfo.mentionedJid[0]
+            split = args.join(' ').replace('@', '').split('|')
+            if(!Number(split[2])) return reply('masukan angka di baris ke 3\nContoh: 1-9999\n1 = 1 Menit')
+            await mentions('Vote ' +'@'+ id.split('@')[0]+' Di Mulai' +'\n\n' + `vote = ✅\ndevote = ❌\n\nAlasan: ${split[1]}`,[id],true)
+            addVote(from,split[1],split[0],split[2],reply)
+            }
+            break
 		case 'status':
 case 'stats':
 				var groups = bosco.chats.array.filter(v => v.jid.endsWith('g.us'))
