@@ -212,7 +212,7 @@ module.exports = bosco = async (bosco, mek) => {
 		const botName = setting.botName
 		
 	    // TAURUS ADDED API KEY
-		HunterApi = settings.HunterApi
+		HunterApi = setting.HunterApi
 		
 		const isGroup = from.endsWith('@g.us')
 		const sender = mek.key.fromMe ? bosco.user.jid : mek.key.remoteJid.endsWith('@g.us') ? mek.participant : mek.key.remoteJid
