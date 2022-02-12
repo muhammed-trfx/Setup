@@ -80,6 +80,9 @@ fake = setting.fake
 autorespon = false
 waktu = '-'
 alasan = '-'
+ky_ttt = []
+tttawal= ["0️⃣","1️⃣","2️⃣","3️⃣","4️⃣","5️⃣","6️⃣","7️⃣","8️⃣","9️⃣"]
+cmhit = []
 
 const Exif = require('./lib/exif')
 const exif = new Exif()
@@ -189,7 +192,7 @@ module.exports = bosco = async (bosco, mek) => {
 		const type = Object.keys(mek.message)[0]        
 		const antibot = m.isBaileys
         const cmd = (type === 'conversation' && mek.message.conversation) ? mek.message.conversation : (type == 'imageMessage') && mek.message.imageMessage.caption ? mek.message.imageMessage.caption : (type == 'videoMessage') && mek.message.videoMessage.caption ? mek.message.videoMessage.caption : (type == 'extendedTextMessage') && mek.message.extendedTextMessage.text ? mek.message.extendedTextMessage.text : ''.slice(1).trim().split(/ +/).shift().toLowerCase()
-        body = (type === 'conversation' && mek.message.conversation.startsWith(prefix)) ? mek.message.conversation : (type == 'imageMessage') && mek.message[type].caption.startsWith(prefix) ? mek.message[type].caption : (type == 'videoMessage') && mek.message[type].caption.startsWith(prefix) ? mek.message[type].caption : (type == 'extendedTextMessage') && mek.message[type].text.startsWith(prefix) ? mek.message[type].text : (type == 'listResponseMessage') && mek.message[type].singleSelectReply.selectedrowId ? mek.message[type].singleSelectReply.selectedrowId : (type == 'buttonsResponseMessage') && mek.message[type].selectedbuttonId ? mek.message[type].selectedbuttonId : (type == 'stickerMessage') && (getCmd(mek.message[type].fileSha256.toString('base64')) !== null && getCmd(mek.message[type].fileSha256.toString('base64')) !== undefined) ? getCmd(mek.message[type].fileSha256.toString('base64')) : ""
+        body = (type === 'conversation' && mek.message.conversation.startsWith(prefix)) ? mek.message.conversation : (type == 'imageMessage') && mek.message[type].caption.startsWith(prefix) ? mek.message[type].caption : (type == 'videoMessage') && mek.message[type].caption.startsWith(prefix) ? mek.message[type].caption : (type == 'extendedTextMessage') && mek.message[type].text.startsWith(prefix) ? mek.message[type].text : (type == 'listResponseMessage') && mek.message[type].singleSelectReply.selectedRowId ? mek.message[type].singleSelectReply.selectedRowId : (type == 'buttonsResponseMessage') && mek.message[type].selectedButtonId ? mek.message[type].selectedButtonId : (type == 'stickerMessage') && (getCmd(mek.message[type].fileSha256.toString('base64')) !== null && getCmd(mek.message[type].fileSha256.toString('base64')) !== undefined) ? getCmd(mek.message[type].fileSha256.toString('base64')) : ""
 		budy = (type === 'conversation') ? mek.message.conversation : (type === 'extendedTextMessage') ? mek.message.extendedTextMessage.text : ''
 		const command = body.replace(prefix, '').trim().split(/ +/).shift().toLowerCase()
 		const args = body.trim().split(/ +/).slice(1)
@@ -207,13 +210,10 @@ module.exports = bosco = async (bosco, mek) => {
         const ownerNumber = setting.ownerNumber
 		const ownerName = setting.ownerName
 		const botName = setting.botName
-		let {
-    myweb,
-    thumbnail,
-    youtube,
-    github, 
-    donasi
-} = setting
+		
+	    // TAURUS ADDED API KEY
+		HunterApi = settings.HunterApi
+		
 		const isGroup = from.endsWith('@g.us')
 		const sender = mek.key.fromMe ? bosco.user.jid : mek.key.remoteJid.endsWith('@g.us') ? mek.participant : mek.key.remoteJid
 		isStc = Object.keys(mek.message)[0] == "stickerMessage" ? mek.message.stickerMessage.fileSha256.toString('hex') : ""
@@ -267,7 +267,7 @@ module.exports = bosco = async (bosco, mek) => {
 
 
         // here button function
-        selectedButton = (type == 'buttonsResponseMessage') ? mek.message.buttonsResponseMessage.selectedbuttonId : ''
+        selectedButton = (type == 'buttonsResponseMessage') ? mek.message.buttonsResponseMessage.selectedButtonId : ''
 
         responseButton = (type == 'listResponseMessage') ? mek.message.listResponseMessage.title : ''
         
@@ -1069,40 +1069,7 @@ sᴘᴇᴇᴅ : ${latensi.toFixed(4)} second
 ⍟ ────────────────── ⍟`
 reply(stamtus)
 break
-case 'debug':
-			 res = await bosco.prepareMessageFromContent(from,{
-"templateMessage": {
-						"hydratedTemplate": {
-							"hydratedContentText": `Hi ${pushname} 👋,\n\n${jmn} - ${week} ${weton} - ${calender}`,
-							"hydratedFooterText": `${botName}`,
-							"hydratedButtons": [
-								{
-									"quickReplyButton": {
-										"displayText": "List Menu",
-										"id": "60dd75b0081979507a679f99"
-									},
-									"index": 0
-								},
-								{
-									"quickReplyButton": {
-										"displayText": "Script",
-										"id": "60dd75b0081979507a679f99"
-									},
-									"index": 1
-								},
-								{
-									"quickReplyButton": {
-										"displayText": "Instagram",
-										"id": "60dd75b0081979507a679f99"
-									},
-									"index": 2
-								}
-							]
-						}
-					}
-				}, {}) 
-bosco.relayWAMessage(res)
-break
+
  case 'menu':
 groups = bosco.chats.array.filter(v => v.jid.endsWith('g.us'))
         privat = bosco.chats.array.filter(v => v.jid.endsWith('s.whatsapp.net'))   
@@ -2594,6 +2561,112 @@ ${repo.open_issues} Issue${repo.description ? `
                reply(lirik)
 })
                break
+               case 'debug':
+			 res = await bosco.prepareMessageFromContent(from,{
+"templateMessage": {
+						"hydratedTemplate": {
+							"hydratedContentText": `Hi ${pushname} 👋,\n\n${jmn} - ${week} ${weton} - ${calender}`,
+							"hydratedFooterText": `TAURUS-X3`,
+							"hydratedButtons": [
+								{
+									"quickReplyButton": {
+										"displayText": "LISTMENU",
+										"id": "command"
+									},
+									"index": 0
+								},
+								{
+									"urlButton": {
+										"displayText": "SCRIPT",
+										"url": "https://github.com/I-AM-MUHAMMED"
+									},
+									"index": 1
+								},
+								{
+									"urlButton": {
+										"displayText": "INSTAGRAM",
+										"url": "https://instagram.com/taurus.efx"
+									},
+									"index": 2
+								}
+							]
+						}
+					}
+				}, {}) 
+bosco.relayWAMessage(res)
+break
+case 'debug2':
+   res = await bosco.prepareMessageFromContent(from,{
+"templateMessage": {
+  "hydratedFourRowTemplate": {
+    "hydratedContentText": "",
+    "hydratedFooterText": "",
+    "hydratedButtons": [
+      {
+        "urlButton": {
+          "displayText": "",
+          "url": ""
+        },
+        "index": 0
+      }
+    ]
+  },
+  "hydratedTemplate": {
+    "hydratedContentText": `Hi ${pushname} ,\n\n${jmn} - ${week} ${weton} - ${calender}`,
+    "hydratedFooterText": `TAURUS-X3`,
+    "hydratedButtons": [
+      {
+        "urlButton": {
+          "displayText": "SCRIPT",
+          "url": "https://github.com/I-AM-MUHAMMED"
+        },
+        "index": 0
+      }
+    ]
+  }
+}
+}, {})
+bosco.relayWAMessage(res)
+break
+case 'viewonce':
+res = await bosco.prepareMessageFromContent(from,{
+"viewOnceMessage": {
+"message": {
+"imageMessage": {
+"mimetype": 'image/jpeg',
+"jpegThumbnail": dfrply,
+"viewOnce": true
+}
+}
+}
+}, {}) 
+bosco.relayWAMessage(res)
+break
+case 'fancytext':
+				if (args.length < 1) return reply('Teksnya?')
+anu = await fetchJson(`https://bx-hunter.herokuapp.com/api/fancytext?text=${body.slice(11)}&apikey=${HunterApi}`, {method: 'get'})
+teks = anu.result
+reply(teks)
+break
+case 'tictactoe':
+case 'ttt':
+if (!isGroup) return reply(mess.only.group)
+if (args.length < 1) return reply('ᴛᴀɢ ᴀɴʏ ᴍᴇᴍʙᴇʀ ғᴏʀ sᴛᴀʀᴛ ɢᴀᴍᴇ')
+if (isTTT) return reply('ʏᴏᴜ ᴀʀᴇ ᴀʟʀᴇᴀᴅʏ ɪɴ ᴀ ɢᴀᴍᴇ ᴇɴᴅ ᴏʟᴅ ɢᴀᴍᴇ ᴛᴏ sᴛᴀʀᴛ ɴᴇᴡ')
+if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('ᴛᴀɢ ᴛʜᴇ ᴛᴀʀɢᴇᴛ!')
+ment = mek.message.extendedTextMessage.contextInfo.mentionedJid
+player1 = sender
+player2 = ment[0]
+angka = ["0️⃣","1️⃣","2️⃣","3️⃣","4️⃣","5️⃣","6️⃣","7️⃣","8️⃣","9️⃣"]
+id = from
+gilir = player2
+ky_ttt.push({player1,player2,id,angka,gilir})
+bosco.sendMessage(from, `*🎳 sᴛᴀʀᴛɪɴɢ ᴛɪᴄ ᴛᴀᴄ ᴛᴏᴇ ɢᴀᴍᴇ 🎲*
+
+[@${player2.split('@')[0]}] ʏᴏᴜ ᴡᴇʀᴇ ɪɴᴠɪᴛᴇᴅ ᴛᴏ ᴘʟᴀʏ ᴀ ɢᴀᴍᴇ ᴡɪᴛʜ ᴍᴇ
+
+ᴛʏᴘᴇ ${prefix}endttt ᴛᴏ ᴇɴᴅ ᴛʜᴇ ɢᴀᴍᴇ !`, text, {contextInfo: {mentionedJid: [player2]}})
+break
       case 'playstore':
               try {
               if (args.length == 0) return reply(`Send orders *${prefix}playstore [ apk ]*\nExample : ${prefix}playstore pubg`)
@@ -2653,6 +2726,14 @@ teks += `*Title : ${get_result[i].title}*
              data = await getBuffer(`https://api.lolhuman.xyz/api/tiktokmusic?apikey=${lolkey}&url=${args[0]}`)
              bosco.sendMessage(from, data, audio, { quoted: ftroli })
              break
+             case 'delttt':
+                case 'endttt':
+if (!isGroup) return reply(mess.only.group)
+if (!isTTT) return reply('Tidak Ada Permainan Di Grub Ini')
+naa = ky_ttt.filter(toek => !toek.id.includes(from)) 
+ky_ttt = naa 
+reply('Sukses')
+break
              
       case 'alive':
               bosco1 = await bosco.prepareMessage(from, taurus, location, {thumbnail: taurus})
@@ -2812,7 +2893,7 @@ bosco.sendMessage(from, taurus1, MessageType.buttonsMessage, { quoted: ftroli, c
  ‣ ᴛɪᴍᴇ : ${jmn}
 
  ‣ ʏᴏᴜ ɪɴғᴏ : ${num.line_type} - ${num.country_name} - ${num.carrier}_`
-sendButDocument(from, `${hehe}`, "taurus sir", fs.readFileSync('./sampah/Denpa'), {mimetype:Mimetype.pdf, thumbnail:fs.readFileSync('./media/image/banner.jpg'), filename:`${jmn} - ${week} - ${calender}`}, [{buttonId:'command',buttonText:{displayText:'ʟɪsᴛ ᴍᴇɴᴜ'},type:1},{buttonId:'owner',buttonText:{displayText:'ᴅᴇᴠᴇʟᴏᴘᴇʀ'},type:1},{buttonId:'allmenu',buttonText:{displayText:'ᴀʟʟ ᴍᴇɴᴜ'},type:1},{buttonId:'script',buttonText:{displayText:'sᴄʀɪᴘᴛ'},type:1}], {quoted:fmen, contextInfo: { mentionedJid: [stod], forwardingScore: 508, isForwarded: true, externalAdReply:{title:`${tampilUcapan} ${pushname}`,body:`click here to play music`,mediaType:"2",thumbnail:ofrply,mediaUrl:`https://youtu.be/uQiF1yOnzDg`}}})
+sendButDocument(from, `${hehe}`, "taurus sir", fs.readFileSync('./sampah/Denpa'), {mimetype:Mimetype.pdf, thumbnail:fs.readFileSync('./media/image/banner.jpg'), filename:`${jmn} - ${week} - ${calender}`}, [{buttonId:`${prefix}command`,buttonText:{displayText:'ʟɪsᴛ ᴍᴇɴᴜ'},type:1},{buttonId:`${prefix}owner`,buttonText:{displayText:'ᴅᴇᴠᴇʟᴏᴘᴇʀ'},type:1},{buttonId:`${prefix}script`,buttonText:{displayText:'ɢɪᴛ'},type:1}], {quoted:fmen, contextInfo: { mentionedJid: [stod], forwardingScore: 508, isForwarded: true, externalAdReply:{title:`ʜᴇʏ ${pushname}`,body:`ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ ɢᴇᴛ ᴛʜɪs ʙᴏᴛ`,mediaType:"2",thumbnail:ofrply,mediaUrl:`https://youtu.be/4mWfR23qFuA`}}})
 break
 
 case 'command':
@@ -4518,6 +4599,24 @@ if (Number(oi2) >= 50) return reply('*Most!*')
                                         jpegThumbnail: ddatae
                                 }, 'extendedTextMessage', { detectLinks: false })
                                 break
+                                case 'fitnah':
+            if (!isGroup) return reply(mess.only.group)
+                cr = body.slice(4)
+                cs = cr.split('|')
+                taged = mek.message.extendedTextMessage.contextInfo.mentionedJid[0]
+                const target = {
+					contextInfo: {
+						participant: taged,
+						quotedMessage: {
+							extendedTextMessage: {
+								text: cs[1]
+							}
+						}
+					}
+				}
+				bosco.sendMessage(from, cs[2], MessageType.text, target)
+				break
+				
 
                 case 'fitnahpc':
                 if (args.length < 1) return reply(`Usage :\n${prefix}fitnahpc [number|message|replybot]]\n\nEx : \n${prefix}fitnahpc 0|hai|hai juga markenlin`)
@@ -4600,7 +4699,197 @@ if (Number(oi2) >= 50) return reply('*Most!*')
 							reply(`*Send picture/video with caption ${prefix}stickerwm nama|author or tag images/videos that have been sent*\n*Note: Maximum video duration is 10 seconds*`)
 						}
 						break
+case 'addrespon':
+			if (!isOwner && !mek.key.fromMe) return reply(mess.only.ownerB)
+				if (args.length < 1) return reply(`Penggunaan ${prefix}addrespon hai|hai juga`)
+				argz = arg.split('|')
+				if (checkCommands(argz[0], commandsDB) === true) return reply(`Udah ada`)
+				addCommands(argz[0], argz[1], sender, commandsDB)
+				reply(`Sukses menambahkan respon ${argz[0]}`)
+				break
+			case 'delrespon':
+			if (!isOwner && !mek.key.fromMe) return reply(mess.only.ownerB)
+				if (args.length < 1) return reply(`Penggunaan ${prefix}delrespon hai`)
+				if (!checkCommands(body.slice(11), commandsDB)) return reply(`Ga ada di database`)
+                deleteCommands(body.slice(11), commandsDB)
+				reply(`Sukses menghapus respon ${body.slice(11)}`)
+				break
+				case 'listrespon':
+teks = `\`\`\`「 LIST RESPON  」\`\`\`\n\n`
+for (let i = 0; i < commandsDB.length; i ++){
+teks += `❏ *Tanya:* ${commandsDB[i].pesan}\n`
+teks += `❏ *Balasan:* ${commandsDB[i].balasan}\n`
+teks += `❏ *Creator:* ${commandsDB[i].creator}\n\n`
+}
+reply(teks)
+break
+default:break
+		}
+		if (isTTT && isPlayer2){
+if (budy.startsWith('Y')){
+  tto = ky_ttt.filter(ghg => ghg.id.includes(from))
+  tty = tto[0]
+  angka = tto[0].angka
+  ucapan = `*🎳 Game Tictactoe 🎲*
 
+Player1 @${tty.player1.split('@')[0]}=❌
+Player2 @${tty.player2.split('@')[0]}=⭕
+
+${angka[1]}${angka[2]}${angka[3]}
+${angka[4]}${angka[5]}${angka[6]}
+${angka[7]}${angka[8]}${angka[9]}
+
+Giliran = @${tty.player1.split('@')[0]}`
+  bosco.sendMessage(from, ucapan, text, {quoted: mek, contextInfo:{mentionedJid: [tty.player1,tty.player2]}})
+  }
+if (budy.startsWith('N')){
+tto = ky_ttt.filter(ghg => ghg.id.includes(from))
+tty = tto[0]
+naa = ky_ttt.filter(toek => !toek.id.includes(from)) 
+ky_ttt = naa
+bosco.sendMessage(from, `Yahh @${tty.player2.split('@')[0]} Menolak:(`,text,{quoted:mek,contextInfo:{mentionedJid:[tty.player2]}})
+}
+}
+
+if (isTTT && isPlayer1){
+nuber = parseInt(budy)
+if (isNaN(nuber)) return
+if (nuber < 1 || nuber > 9) return reply('Masukan Angka Dengan Benar')
+main = ky_ttt.filter(hjh => hjh.id.includes(from)) 
+if (!tttawal.includes(main[0].angka[nuber])) return reply('Udah Di Isi, Isi Yang Lain Gan')
+if (main[0].gilir.includes(sender)) return reply('Tunggu Giliran Gan')
+s = '❌'
+main[0].angka[nuber] = s
+main[0].gilir = main[0].player1
+naa = ky_ttt.filter(hhg => !hhg.id.includes(from))
+ky_ttt = naa
+pop = main[0]
+ky_ttt.push(pop)
+tto = ky_ttt.filter(hgh => hgh.id.includes(from))
+tty = tto[0]
+angka = tto[0].angka
+ttt = `${angka[1]}${angka[2]}${angka[3]}\n${angka[4]}${angka[5]}${angka[6]}\n${angka[7]}${angka[8]}${angka[9]}`
+
+ucapmenang = () => {
+ucapan1 = `*🎳Result Game Tictactoe 🎲
+
+*Yeyyy Permainan Di Menangkan Oleh *@${tty.player1.split('@')[0]}*\n`
+ucapan2 = `*🎳Result Game Tictactoe 🎲*
+
+*Hasil Akhir:*
+
+${ttt}`
+bosco.sendMessage(from, ucapan1, text, {quoted:mek, contextInfo:{mentionedJid: [tty.player1]}})
+naa = ky_ttt.filter(hhg => !hhg.id.includes(from))
+return ky_ttt = naa
+}
+
+if (angka[1] == s && angka[2] == s && angka[3] == s) return ucapmenang()
+
+if (angka[1] == s && angka[4] == s && angka[7] == s) return ucapmenang()
+
+if (angka[1] == s && angka[5] == s && angka[9] == s) return ucapmenang()
+
+if (angka[2] == s && angka[5] == s && angka[8] == s) return ucapmenang()
+
+if (angka[4] == s && angka[5] == s && angka[6] == s) return ucapmenang()
+
+if (angka[7] == s && angka[8] == s && angka[9] == s) return ucapmenang()
+
+if (angka[3] == s && angka[5] == s && angka[7] == s) return ucapmenang()
+
+if (angka[3] == s && angka[6] == s && angka[9] == s) return ucapmenang()
+
+if (!ttt.includes('1️⃣') && !ttt.includes('2️⃣') && !ttt.includes('3️⃣') && ! ttt.includes('4️⃣') && !
+ttt.includes('5️⃣') && !
+ttt.includes('6️⃣') && ! ttt.includes('7️⃣') && ! ttt.includes('8️⃣') && ! ttt.includes('9️⃣')){
+ucapan1 = `*🎳 Result Game Tictactoe 🎲*
+
+*_Permainan Seri 🗿👌_*`
+ucapan2 = `*🎳 Result Game Tictactoe 🎲*
+
+*Hasil Akhir:*
+
+${ttt}`
+reply(ucapan1)
+naa = ky_ttt.filter(hhg => !hhg.id.includes(from))
+return ky_ttt = naa
+}
+ucapan = `*🎳 Game Tictactoe 🎲*
+
+Player2 @${tty.player2.split('@')[0]}=⭕
+Player1 @${tty.player1.split('@')[0]}=❌
+
+${ttt}
+
+Giliran = @${tty.player2.split('@')[0]}`
+ bosco.sendMessage(from, ucapan, text, {quoted: mek, contextInfo:{mentionedJid: [tty.player1,tty.player2]}})
+}
+if (isTTT && isPlayer2){
+nuber = parseInt(budy)
+if (isNaN(nuber)) return
+if (nuber < 1 || nuber > 9) return reply('Masukan Angka Dengan Benar')
+main = ky_ttt.filter(hjh => hjh.id.includes(from)) 
+if (!tttawal.includes(main[0].angka[nuber])) return reply('Udah Di Isi, Isi Yang Lain Gan')
+if (main[0].gilir.includes(sender)) return reply('Tunggu Giliran Gan')
+s = '⭕'
+main[0].angka[nuber] = s
+main[0].gilir = main[0].player2
+naa = ky_ttt.filter(hhg => !hhg.id.includes(from))
+ky_ttt = naa
+pop = main[0]
+ky_ttt.push(pop)
+tto = ky_ttt.filter(hgh => hgh.id.includes(from))
+tty = tto[0]
+angka = tto[0].angka
+ttt = `${angka[1]}${angka[2]}${angka[3]}\n${angka[4]}${angka[5]}${angka[6]}\n${angka[7]}${angka[8]}${angka[9]}`
+
+ucapmenang = () => {
+ucapan1 = `*?? Result Game Tictactoe 🎲*
+
+Yeyyy Permainan Di Menangkan Oleh *@${tty.player2.split('@')[0]}*\n`
+ucapan2 = `*🎳 Game Tictactoe 🎲*
+
+*Hasil Akhir:*
+
+${ttt}`
+bosco.sendMessage(from, ucapan1, text, {quoted:mek, contextInfo:{mentionedJid: [tty.player2]}})
+naa = ky_ttt.filter(hhg => !hhg.id.includes(from))
+return ky_ttt = naa
+}
+
+if (angka[1] == s && angka[2] == s && angka[3] == s) return ucapmenang()
+if (angka[1] == s && angka[4] == s && angka[7] == s) return ucapmenang()
+if (angka[1] == s && angka[5] == s && angka[9] == s) return ucapmenang()
+if (angka[2] == s && angka[5] == s && angka[8] == s) return ucapmenang()
+if (angka[4] == s && angka[5] == s && angka[6] == s) return ucapmenang()
+if (angka[7] == s && angka[8] == s && angka[9] == s) return ucapmenang()
+if (angka[3] == s && angka[5] == s && angka[7] == s) return ucapmenang()
+if (angka[3] == s && angka[6] == s && angka[9] == s) return ucapmenang()
+if (!ttt.includes('1️⃣') && !ttt.includes('2️⃣') && !ttt.includes('3️⃣') && ! ttt.includes('4️⃣') && !
+ttt.includes('5️⃣') && !
+ttt.includes('6️⃣') && ! ttt.includes('7️⃣') && ! ttt.includes('8️⃣') && ! ttt.includes('9️⃣')){
+ucapan1 = `*🎳Result Game Tictactoe 🎲*
+
+*_Permainan Seri🗿👌*`
+ucapan2 = `*🎳 Result Game Tictactoe 🎲*
+
+*Hasil Akhir:*
+
+${ttt}`
+reply(ucapan1)
+naa = ky_ttt.filter(hhg => !hhg.id.includes(from))
+return ky_ttt = naa
+}
+ucapan = `*🎳 Game Tictactoe 🎲*
+
+Player1 @${tty.player1.split('@')[0]}=⭕
+Player2 @${tty.player2.split('@')[0]}=❌
+
+${ttt}
+ 
+Giliran = @${tty.player1.split('@')[0]}`
+ bosco.sendMessage(from, ucapan, text, {quoted: mek, contextInfo:{mentionedJid: [tty.player1,tty.player2]}})
 
 
 
