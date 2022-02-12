@@ -40,6 +40,7 @@ const qrcodes = require('qrcode');
 const googleIt = require('google-it')
 const os = require('os');
 const hx = require('hxz-api')
+const client = new WAConnection()
 
 const { Menu, rulesBot } = require('./message/help.js')
 const { getBuffer, getGroupAdmins, generateMessageID, getRandom, runtime, pickRandom, sleep } = require('./lib/myfunc')
@@ -1739,14 +1740,13 @@ break
 				for (let xyz of readallid) {
 					await bosco.chatRead(xyz.jid)
 				}
-		      bosco.sendMessage(from, `Sukses!`, text, { quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {}) }, message: { "imageMessage": { "mimetype": "image/jpeg", "caption": "Berhasil membaca semua chat!", 'jpegThumbnail': fs.readFileSync('./ds.jpg')}}}})
+		      bosco.sendMessage(from, `Success!`, text, { quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {}) }, message: { "imageMessage": { "mimetype": "image/jpeg", "caption": "Berhasil membaca semua chat!", 'jpegThumbnail': fs.readFileSync('./ds.jpg')}}}})
               break
       case 'shutdown':
-             if (!isOwner) return reply(mess.owner.only)
-             reply(`Bye...`)
-             await sleep(3000)
-             process.exit()
-             break
+					if (!isOwner && !mek.key.fromMe) return reply(mess.only.ownerB)
+				return bosco.sendMessage(from, JSON.stringify(eval(process.exit())))
+				reply('Okey')
+				break
       case 'leaveall':
              if (!isOwner) return  
              let totalgroup = bosco.chats.array.filter(u => u.jid.endsWith('@g.us')).map(u => u.jid)
@@ -2745,7 +2745,7 @@ if (!isGroup) return reply(mess.only.group)
 if (!isTTT) return reply('Tidak Ada Permainan Di Grub Ini')
 naa = ky_ttt.filter(toek => !toek.id.includes(from)) 
 ky_ttt = naa 
-reply('Sukses')
+reply('Success')
 break
              
       case 'alive':
@@ -3548,6 +3548,40 @@ res = await bosco.prepareMessageFromContent(from,{
 				})
   bosco.relayWAMessage(res)
   break
+  case 'ownerinfo':
+			 res = await bosco.prepareMessageFromContent(from,{
+"templateMessage": {
+						"hydratedTemplate": {
+							"hydratedContentText": `Hi ${pushname} \n\n${jmn} - ${week} ${weton} - ${calender}`,
+							"hydratedFooterText": `TAURUS-X3`,
+							"hydratedButtons": [
+								{
+									"urlButton": {
+										"displayText": "YOUTUBE",
+										"url": "https://youtube.com/TAURUSEDITS"
+									},
+									"index": 
+								},
+								{
+									"urlButton": {
+										"displayText": "GITHUB",
+										"url": "https://github.com/I-AM-MUHAMMED"
+									},
+									"index": 1
+								},
+								{
+									"urlButton": {
+										"displayText": "INSTAGRAM",
+										"url": "https://instagram.com/taurus.efx"
+									},
+									"index": 2
+								}
+							]
+						}
+					}
+				}, {}) 
+bosco.relayWAMessage(res)
+break
         case 'anime':
               let wipu = (await axios.get(`https://raw.githubusercontent.com/Arya-was/endak-tau/main/${command}.json`)).data
               let wipi = wipu[Math.floor(Math.random() * (wipu.length))]
@@ -4728,14 +4762,14 @@ case 'addrespon':
 				argz = arg.split('|')
 				if (checkCommands(argz[0], commandsDB) === true) return reply(`Udah ada`)
 				addCommands(argz[0], argz[1], sender, commandsDB)
-				reply(`Sukses menambahkan respon ${argz[0]}`)
+				reply(`Success menambahkan respon ${argz[0]}`)
 				break
 			case 'delrespon':
 			if (!isOwner && !mek.key.fromMe) return reply(mess.only.ownerB)
 				if (args.length < 1) return reply(`Penggunaan ${prefix}delrespon hai`)
 				if (!checkCommands(body.slice(11), commandsDB)) return reply(`Ga ada di database`)
                 deleteCommands(body.slice(11), commandsDB)
-				reply(`Sukses menghapus respon ${body.slice(11)}`)
+				reply(`Success menghapus respon ${body.slice(11)}`)
 				break
 				case 'listrespon':
 teks = `\`\`\`「 LIST RESPON  」\`\`\`\n\n`
@@ -4753,10 +4787,10 @@ if (budy.startsWith('Y')){
   tto = ky_ttt.filter(ghg => ghg.id.includes(from))
   tty = tto[0]
   angka = tto[0].angka
-  ucapan = `*🎳 Game Tictactoe 🎲*
+  ucapan = `*🎳 ɢᴀᴍᴇ ᴛɪᴄᴛᴀᴄᴛᴏᴇ 🎲*
 
-Player1 @${tty.player1.split('@')[0]}=❌
-Player2 @${tty.player2.split('@')[0]}=⭕
+ᴘʟᴀʏᴇʀ 1 @${tty.player1.split('@')[0]}=❌
+ᴘʟᴀʏᴇʀ 2 @${tty.player2.split('@')[0]}=⭕
 
 ${angka[1]}${angka[2]}${angka[3]}
 ${angka[4]}${angka[5]}${angka[6]}
@@ -4777,10 +4811,10 @@ bosco.sendMessage(from, `Yahh @${tty.player2.split('@')[0]} Menolak:(`,text,{quo
 if (isTTT && isPlayer1){
 nuber = parseInt(budy)
 if (isNaN(nuber)) return
-if (nuber < 1 || nuber > 9) return reply('Masukan Angka Dengan Benar')
+if (nuber < 1 || nuber > 9) return reply('ᴇɴᴛᴇʀ ᴄᴏʀʀᴇᴄᴛ ɴᴜᴍʙᴇʀ')
 main = ky_ttt.filter(hjh => hjh.id.includes(from)) 
-if (!tttawal.includes(main[0].angka[nuber])) return reply('Udah Di Isi, Isi Yang Lain Gan')
-if (main[0].gilir.includes(sender)) return reply('Tunggu Giliran Gan')
+if (!tttawal.includes(main[0].angka[nuber])) return reply('ɪᴛs ɪɴ ᴄᴏɴᴛᴇɴᴛ, ᴏᴛʜᴇʀ ᴄᴏɴᴛᴇɴᴛ ᴘʟᴇᴀsᴇ')
+if (main[0].gilir.includes(sender)) return reply('ᴡᴀɪᴛɪɴɢ ғᴏʀ sᴇᴄᴏɴᴅ ᴜsᴇʀs ᴛᴜʀɴ')
 s = '❌'
 main[0].angka[nuber] = s
 main[0].gilir = main[0].player1
@@ -4796,7 +4830,7 @@ ttt = `${angka[1]}${angka[2]}${angka[3]}\n${angka[4]}${angka[5]}${angka[6]}\n${a
 ucapmenang = () => {
 ucapan1 = `*🎳Result Game Tictactoe 🎲
 
-*Yeyyy Permainan Di Menangkan Oleh *@${tty.player1.split('@')[0]}*\n`
+*🎉 @${tty.player1.split('@')[0]} won the game*\n`
 ucapan2 = `*🎳Result Game Tictactoe 🎲*
 
 *Hasil Akhir:*
