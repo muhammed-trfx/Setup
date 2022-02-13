@@ -1297,9 +1297,9 @@ if (isUser) return reply('Kamu sudah terdaftar di dalam database')
 const serialUser = createSerial(18)
 veri = sender
 _registered.push(sender)
-addRegisterUser(sender, pushname, bio_user, timeWib, serialUser)
+addRegisterUser(sender, pushname, bio_user, time, serialUser)
 fs.writeFileSync('./database/registered.json', JSON.stringify(_user))
-teks = `╭─⬣ *Verification* ⬣\n│📛 *Nama :* ${pushname}\n│#️⃣ *Nomor :* @${sender.split('@')[0]}\n│💌 *Bio :* ${bio_user}\n│🖼 *serial :* ${serialUser}\n│⏰ *Time :* ${timeWib} Wib\n╰⬣`
+teks = `╭─⬣ *Verification* ⬣\n│📛 *Nama :* ${pushname}\n│#️⃣ *Nomor :* @${sender.split('@')[0]}\n│💌 *Bio :* ${bio_user}\n│🖼 *serial :* ${serialUser}\n│⏰ *Time :* ${time} Wib\n╰⬣`
 										let papako = [{
 											"buttonId": `${prefix}menu`,
 											"buttonText": {
