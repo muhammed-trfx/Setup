@@ -565,7 +565,7 @@ remoteJid :"status@broadcast" }: {})
 				year: 'numeric'
 		       })
 		///Button Location
-/*const sendButLocation = async (id, text1, desc1, gam1, but = [], options = {}) => {
+const sendButLocation = async (id, text1, desc1, gam1, but = [], options = {}) => {
 kma = gam1
 mhan = await bosco.prepareMessage(from, kma, location)
 /* const buttonMessages = {
@@ -587,11 +587,6 @@ headerType: "EMPTY"
 }
 bosco.sendMessage(id, buttonMessage, MessageType.buttonsMessage, options)
 }
-        
-        async function sendButLocation(id, text1, desc1, gam1, but = [], options = {}) {
-            const buttonMessages = { locationMessage: { jpegThumbnail: 20220129_205836_11zon }, contentText: text1, footerText: desc1, buttons: but, headerType: 6 }
-            return bosco.sendMessage(id, buttonMessages, MessageType.buttonsMessage, options)
-        }
 ///Button Document
 const sendButDocument = async(id, text1, desc1, media, doc1, but = [], options = {}) => {
 kma = doc1
