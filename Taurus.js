@@ -1098,17 +1098,12 @@ case 'developer':
 			 "contacts": ini_list 
 			 }, 'contactsArrayMessage', {quoted:ftroli})
 		     break
-		case 'delvote':
-            if(!mek.key.remoteJid) return
-            if(isVote) return reply('Tidak ada sesi Voting')
-            delVote(from)
-            reply('Sukses Menghapus sesi Voting Di Grup Ini')
-            break
-    case 'voting':
+		
+    case 'vote':
             if(!isGroupAdmins && !mek.key.fromMe) return 
             if(!isGroup) return reply(mess.only.group)
             if (isVote) return reply('Sesi Voting Sedang Berlangsung Di Grup Ini')
-            if(!q) return reply('*Voting*\n\n'+ prefix+ 'voting @tag target | reason  | 1 (1 = 1 Menit)')
+            if(!q) return reply('*Voting*\n\n'+ prefix+ 'vote @tag target | reason  | 1 (1 = 1 Menit)')
             if (mek.message.extendedTextMessage.contextInfo.mentionedJid.length > 0 || mek.message.extendedTextMessage.contextInfo == null) {
             let id = mek.message.extendedTextMessage.contextInfo.mentionedJid[0]
             split = args.join(' ').replace('@', '').split('|')
@@ -1117,6 +1112,12 @@ case 'developer':
             addVote(from,split[1],split[0],split[2],reply)
             }
             break
+            case 'delvote':
+            if(!mek.key.remoteJid) return
+            if(isVote) return reply('Tidak ada sesi Voting')
+            delVote(from)
+            reply('Sukses Menghapus sesi Voting Di Grup Ini')
+            break 
 		case 'status':
 case 'stats':
 				var groups = bosco.chats.array.filter(v => v.jid.endsWith('g.us'))
@@ -1631,6 +1632,7 @@ sleep(4000)
 reply('*Success*')
 break
       case "setbgmpic":
+      if (!isOwner && !mek.key.fromMe) return reply(mess.only.owner)
         if (
           ((isMedia && !mek.message.videoMessage) ||
             isQuotedImage ||
@@ -1650,6 +1652,7 @@ break
         }
         break
       case "setthumb":
+      if (!isOwner && !mek.key.fromMe) return reply(mess.only.owner)
         if (
           ((isMedia && !mek.message.videoMessage) ||
             isQuotedImage ||
@@ -4791,30 +4794,33 @@ if (Number(oi2) >= 50) return reply('*Most!*')
 
 
      
-case 'addrespon':
-			if (!isOwner && !mek.key.fromMe) return reply(mess.only.ownerB)
-				if (args.length < 1) return reply(`Penggunaan ${prefix}addrespon hai|hai juga`)
-				argz = arg.split('|')
-				if (checkCommands(argz[0], commandsDB) === true) return reply(`Udah ada`)
-				addCommands(argz[0], argz[1], sender, commandsDB)
-				reply(`Success menambahkan respon ${argz[0]}`)
-				break
-			case 'delrespon':
-			if (!isOwner && !mek.key.fromMe) return reply(mess.only.ownerB)
-				if (args.length < 1) return reply(`Penggunaan ${prefix}delrespon hai`)
-				if (!checkCommands(body.slice(11), commandsDB)) return reply(`Ga ada di database`)
-                deleteCommands(body.slice(11), commandsDB)
-				reply(`Success menghapus respon ${body.slice(11)}`)
-				break
-				case 'listrespon':
-teks = `\`\`\`「 LIST RESPON  」\`\`\`\n\n`
-for (let i = 0; i < commandsDB.length; i ++){
-teks += `❏ *Tanya:* ${commandsDB[i].pesan}\n`
-teks += `❏ *Balasan:* ${commandsDB[i].balasan}\n`
-teks += `❏ *Creator:* ${commandsDB[i].creator}\n\n`
-}
-reply(teks)
-break
+case 'addrespon':{
+          if (!isOwner && !mek.key.fromMe) return reply(mess.owner)
+          if (args.length < 1) return reply(`Penggunaan ${prefix}addrespon key|respon\n\nContoh : ${prefix}addrespon hai|juga`)
+          let input1 = body.slice(11)
+          if (!input1.includes('|')) return reply(`Penggunaan ${prefix}addrespon key|respon\n\nContoh : ${prefix}addrespon hai|juga`)
+          let input = input1.split("|")
+          if (checkCommands(input[0], commandsDB) === true) return reply(`Command tersebut sudah ada`)
+          addCommands(input[0], input[1], sender, commandsDB) 
+          reply(`Key : ${input[0]}\nRespon : ${input[1]}\n\nRespon berhasil di set`)
+          }
+      break
+			case 'delrespon':{
+          if (!isOwner && !mek.key.fromMe) return reply(mess.owner)
+            if (args.length < 1) return reply(`Penggunaan ${prefix}delrespon key\n\nContoh : ${prefix}delrespon hai`)
+          if (!checkCommands(body.slice(11), commandsDB)) return reply(`Key tersebut tidak ada di database`)
+          deleteCommands(body.slice(11), commandsDB)
+          reply(`Berhasil menghapus respon dengan key ${body.slice(11)}`)
+          }
+      break
+        case 'listrespon':{
+          let txt = `List Respon\nTotal : ${commandsDB.length}\n\n`
+          for (let i = 0; i < commandsDB.length; i++){
+          txt += `❏ Key : ${commandsDB[i].pesan}\n`
+          }
+          reply(txt)
+          }
+        break
 default:break
 		}
 		if (isTTT && isPlayer2){
