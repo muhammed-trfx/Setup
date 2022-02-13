@@ -265,6 +265,7 @@ module.exports = bosco = async (bosco, mek) => {
         const isLevelingOn = isGroup ? _leveling.includes(from) : false
         const isMuted = isGroup ? mute.includes(from) : false
         const isAuto = isGroup ? autosticker.includes(from) : false
+        const isVote = isGroup ? voting.includes(from) : false
 
 
 
