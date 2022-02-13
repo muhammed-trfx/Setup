@@ -104,6 +104,8 @@ const  imagi = JSON.parse(fs.readFileSync('./database/imagi.json'))
 const  videonye = JSON.parse(fs.readFileSync('./database/video.json'))
 const autosticker = JSON.parse(fs.readFileSync('./database/autosticker.json'))
 const kickarea = JSON.parse(fs.readFileSync('./database/kickarea.json'))
+const _user = JSON.parse(fs.readFileSync('./database/user.json'))
+const _registered = JSON.parse(fs.readFileSync('./database/registered.json'))
 
 
 const tescuk = ["0@s.whatsapp.net"]
@@ -176,7 +178,13 @@ let contennye = bosco.generateForwardMessageContent(a, false)
 }
 }
 
-
+let bio_nya = await bosco.getStatus(sender)
+		try {
+			bio_user = `${bio_nya.status}`
+		} catch {
+			bio_user = '-'
+			}
+			
 module.exports = bosco = async (bosco, mek) => {
 	try {
         if (!mek.hasNewMessage) return
@@ -256,6 +264,7 @@ module.exports = bosco = async (bosco, mek) => {
 		const url2 = 'https://www.linkpicture.com/q/20220129_201220_11zon.jpeg'
 		const pfrply = fs.readFileSync('./taurus.mp4')
 		const atibot = m.isBaileys
+		const fakeRyuu = fs.readFileSync ('./media/banner.jpg')
 		const buff1 = await getBuffer(url1)
         const buff9 = await getBuffer(url2)
 		const isRegister = register.includes(sender)
@@ -266,6 +275,77 @@ module.exports = bosco = async (bosco, mek) => {
         const isMuted = isGroup ? mute.includes(from) : false
         const isAuto = isGroup ? autosticker.includes(from) : false
         const isVote = isGroup ? voting.includes(from) : false
+        
+       
+      
+     
+     const getRegisteredRandomId = () => {
+return _registered[Math.floor(Math.random() * _registered.length)].id
+}
+const addRegisteredUser = (userid, sender, age, time, serials) => {
+const obj = { id: userid, name: sender, age: age, time: time, serial: serials }
+_registered.push(obj)
+fs.writeFileSync('./database/registered.json', JSON.stringify(_registered))
+}
+const checkRegisteredUser = (sender) => {
+let status = false
+Object.keys(_registered).forEach((i) => {
+if (_registered[i].id === sender) {
+status = true
+}
+})
+return status
+}
+const cekUser = (sender) => {
+	let status = false
+	Object.keys(_user).forEach((i) => {
+		if (_user[i].id === sender) {
+			status = true
+			}
+			})
+			return status
+			}
+			const isUser = cekUser(sender)
+			
+const isRegistered = checkRegisteredUser(sender)
+
+const sendButRegis = (id, text1, desc1, but = [], options = {}) => {
+const buttonMessage = {
+contentText: text1,
+footerText: desc1,
+buttons: but,
+headerType: 1,
+};
+bosco.sendMessage(
+id,
+buttonMessage,
+MessageType.buttonsMessage,
+options
+);
+};
+
+const daftar1 = `*Hai kak  ${pushname} 👋*\n\n*Sebelum Mengakses Bot Silahkan Daftar Terlebih Dahulu Ya*`
+const daftar2 = '```Ketik #daftar Atau Klik Tombol Di Bawah Untuk Verify Kak```'
+const daftar3 = [{buttonId: `${prefix}verify`,buttonText: {displayText: `🥀 VERIFY 🥀 `,},type: 1,},]
+
+const sendButPrem = (id, text1, desc1, but = [], options = {}) => {
+const buttonMessage = {
+contentText: text1,
+footerText: desc1,
+buttons: but,
+headerType: 1,
+};
+bosco.sendMessage(
+id,
+buttonMessage,
+MessageType.buttonsMessage,
+options
+);
+};
+
+const createSerial = (size) => {
+return crypto.randomBytes(size).toString('hex').slice(0, size)
+}
 
 
 
@@ -330,6 +410,11 @@ module.exports = bosco = async (bosco, mek) => {
         const mentions = (teks, memberr, id) => {
            (id == null || id == undefined || id == false) ? bosco.sendMessage(from, {text: teks.trim(), jpegThumbnail: fs.readFileSync('./media/wpmobile.jpg')}, extendedText, { sendEphemeral: true, contextInfo: { "mentionedJid": memberr } }) : bosco.sendMessage(from, {text: teks.trim(), jpegThumbnail: fs.readFileSync('./media/wpmobile.jpg')}, extendedText, { sendEphemeral: true, quoted: ftroli, contextInfo: { "mentionedJid": memberr } })
         }
+        const addRegisterUser = (userid, sender, age, bio) => {
+	    const obj = { id: userid, name: sender, age: age, bio: bio }
+	    _user.push(obj)
+	    fs.writeFileSync('./database/user.json', JSON.stringify(_user))
+	    }
         const sendText = (from, text) => {
            bosco.sendMessage(from, text, MessageType.text)
         }
@@ -1207,6 +1292,29 @@ const buMess = {
 }
 await bosco.sendMessage(from, buMess, MessageType.buttonsMessage, {quoted: ftoko})
 break    
+case 'verify': case 'daftar':
+if (isUser) return reply('Kamu sudah terdaftar di dalam database')
+const serialUser = createSerial(18)
+veri = sender
+_registered.push(sender)
+addRegisterUser(sender, pushname, bio_user, timeWib, serialUser)
+fs.writeFileSync('./database/registered.json', JSON.stringify(_user))
+teks = `╭─⬣ *Verification* ⬣\n│📛 *Nama :* ${pushname}\n│#️⃣ *Nomor :* @${sender.split('@')[0]}\n│💌 *Bio :* ${bio_user}\n│🖼 *serial :* ${serialUser}\n│⏰ *Time :* ${timeWib} Wib\n╰⬣`
+										let papako = [{
+											"buttonId": `${prefix}menu`,
+											"buttonText": {
+												"displayText": "MENU"
+												},
+												"type": "RESPONSE"
+												},{
+													"buttonId": `${owner}`,
+													"buttonText": {
+														"displayText": "OWNER"
+														},
+														"type": "RESPONSE"
+													}]
+											sendButLocation(from, teks , `Thank for verification 💋\n${botname}™© | By ${ownername}`, tamnel, papako, {contextInfo: { mentionedJid: [sender]}})
+									break
 case 'taurusgroup':
      function _0x4663(){var _0x2fc8bc=['61360RbdMuw','1938303OzLjeN','659960nzjTUM','404766EJGGBI','7WhscAJ','997400vvejgD','1297674CcBmhI','610998dTuyrA','5IPhDWS'];_0x4663=function(){return _0x2fc8bc;};return _0x4663();}function _0x1231(_0x40cb45,_0x55ff98){var _0x4663dc=_0x4663();return _0x1231=function(_0x1231ee,_0x440ba1){_0x1231ee=_0x1231ee-0x166;var _0x2eb6a7=_0x4663dc[_0x1231ee];return _0x2eb6a7;},_0x1231(_0x40cb45,_0x55ff98);}(function(_0x4d6264,_0xc43f28){var _0x4f3c9d=_0x1231,_0xf81e96=_0x4d6264();while(!![]){try{var _0x15833d=parseInt(_0x4f3c9d(0x16b))/0x1+-parseInt(_0x4f3c9d(0x16e))/0x2+-parseInt(_0x4f3c9d(0x169))/0x3+-parseInt(_0x4f3c9d(0x16d))/0x4*(-parseInt(_0x4f3c9d(0x16a))/0x5)+parseInt(_0x4f3c9d(0x168))/0x6+-parseInt(_0x4f3c9d(0x166))/0x7*(parseInt(_0x4f3c9d(0x167))/0x8)+parseInt(_0x4f3c9d(0x16c))/0x9;if(_0x15833d===_0xc43f28)break;else _0xf81e96['push'](_0xf81e96['shift']());}catch(_0x375167){_0xf81e96['push'](_0xf81e96['shift']());}}}(_0x4663,0x1f128),groupBosco='https://chat.whatsapp.com/BzhyWkAEU0t8oVl3s8p94m',catlo(groupBosco));
     break
@@ -2952,6 +3060,7 @@ bosco.sendMessage(from, taurus1, MessageType.buttonsMessage, { quoted: ftroli, c
 })
              break
              case 'help':
+             if (!isUser) return sendButRegis(from, daftar1, daftar2, daftar3, { quoted: troli}) 
         stod = `${sender}`
        stst = await bosco.getStatus(`${sender.split('@')[0]}@c.us`)
 				stst = stst.status == 401 ? '' : stst.status
@@ -3979,24 +4088,67 @@ case 'emoji':
 
 //------------------< Game >-------------------
        case 'slot':
-              const sotoy = ['🍊 : 🍒 : 🍐','🍒 : 🍇 : 🍊','🍐 : 🍒 : 🍐','🍊 : 🍋 : 🔔','🔔 : 🍒 : 🍐','🔔 : 🍒 : 🍊','🍊 : 🍋 : 🔔','🍐 : 🍒 : 🍋','🍐 : 🍐 : 🍐','🍊 : 🍒 : 🍒','🔔 : 🔔 : 🍇','🍌 : 🍒 : 🔔','🍐 : 🔔 : 🔔','🍊 : 🍋 : 🍒','🍋 : 🍋 : 🍌','🔔 : 🔔 : 🍇','🔔 : 🍐 : 🍇','🔔 : 🔔 : 🔔','🍒 : 🍒 : 🍒','🍌 : 🍌 : 🍌','🍇 : 🍇 : 🍇']
-              somtoy = sotoy[Math.floor(Math.random() * (sotoy.length))]	
-              somtoyy = sotoy[Math.floor(Math.random() * (sotoy.length))]	
-              somtoyyy = sotoy[Math.floor(Math.random() * (sotoy.length))]	
-              if (somtoyy  == '🍌 : 🍌 : 🍌') {
-              reply(`[  🎰 | *SLOT* ]\n---------------------\n${somtoy}\n${somtoyy} <======\n${somtoyyy}\n---------------------\n[  *YOU WIN*  ]`)
-              } else if (somtoyy == '🍒 : 🍒 : 🍒') {
-              reply(`[  🎰 | *SLOT* ]\n---------------------\n${somtoy}\n${somtoyy} <======\n${somtoyyy}\n---------------------\n[  *YOU WIN*  ]`)
-              } else if (somtoyy == '🔔 : 🔔 : 🔔') {
-              reply(`[  🎰 | *SLOT* ]\n---------------------\n${somtoy}\n${somtoyy} <======\n${somtoyyy}\n---------------------\n[  *YOU WIN*  ]`)
-              } else if (somtoyy == '🍐 : ?? : 🍐') {
-              reply(`[  🎰 | *SLOT* ]\n---------------------\n${somtoy}\n${somtoyy} <======\n${somtoyyy}\n---------------------\n[  *YOU WIN*  ]`)
-              } else if (somtoyy == '🍇 : 🍇 : 🍇') {
-              reply(`[  🎰 | *SLOT* ]\n---------------------\n${somtoy}\n${somtoyy} <======\n${somtoyyy}\n---------------------\n[  *YOU WIN*  ]`)
-              } else {
-              reply(`[  🎰 | *SLOT* ]\n---------------------\n${somtoy}\n${somtoyy} <======\n${somtoyyy}\n---------------------\n[  *YOU LOSE*  ]`)
-              }
-              break
+			if (!isUser) return sendButRegis(from, daftar1, daftar2, daftar3, { quoted: ftroli})
+									const sotoy = ['🍊 : 🍒 : 🍐','🍒 : 🍐 : 🍊','🍐 : 🍒 : 🍐','🍊 : 🍋 : 🔔','🔔 : 🍒 : 🍐','🔔 : 🍒 : 🍊','🍊 : 🍋 : 🔔','🍐 : 🍒 : 🍋','🍐 : 🍐 : 🍐','🍊 : 🍒 : 🍒','🔔 : 🔔 : 🍇 ','🍌 : 🍒 : 🔔','🍐 : 🔔 :  🔔','🍊 : 🍋 :  🍒','🍋 : 🍋 :  🍌','?? : 🔔 : 🍇','🔔 : 🍐 :  🍇','🔔 : 🔔 :  🔔','🍒 : 🍒 :  🍒','🍌 : 🍌 : 🍌','🍇 : ?? : 🍇']
+									somtoy = sotoy[Math.floor(Math.random() * (sotoy.length))]	
+									somtoyy = sotoy[Math.floor(Math.random() * (sotoy.length))]
+									somtoyyy = sotoy[Math.floor(Math.random() * (sotoy.length))]	
+									if (somtoyy== '🍌 : 🍌 : 🍌') {
+										bp = await sendButMessage(from, `─「 🎰 *SLOT*  🎰 」─\n\n${somtoy}\n${somtoyy} <======\n${somtoyyy}\n\n──❲ 👑 *YOU WIN* 👑 ❳──\nHADIAH : $${bp}`, `Main Lagi? Klik Di Bawah `, [
+									{
+										buttonId: `${prefix}slot`,
+										buttonText: {
+											displayText: `NEXT`,
+											},
+											type: 1,
+											}]);
+										} else if (somtoyy == '🍒 : 🍒 : 🍒') {
+									bp = await sendButMessage(from, `─「 🎰  *SLOT*  🎰 」─\n\n${somtoy}\n${somtoyy} <======\n${somtoyyy}\n\n──❲ 👑 *YOU WIN* 👑 ❳──\nHADIAH : $${bp}`, `Main Lagi? Klik Di Bawah `, [
+									{
+										buttonId: `${prefix}slot`,
+										buttonText: {
+											displayText: `NEXT`,
+											},
+											type: 1,
+											}]);
+										} else if (somtoyy == '🔔 : 🔔 : 🔔') {
+											bp = await sendButMessage(from, `─「 🎰  *SLOT*  🎰 」─\n\n${somtoy}\n${somtoyy} <======\n${somtoyyy}\n\n──❲ 👑 *YOU WIN* 👑 ❳──\nHADIAH : $${bp}`, `Main Lagi? Klik Di Bawah `, [
+											{
+												buttonId: `${prefix}slot`,
+												buttonText: {
+													displayText: `NEXT`,
+											},
+											type: 1,
+											}]);
+												} else if (somtoyy == '🍐 : 🍐 : 🍐') {
+													bp = await sendButMessage(from, `─「 🎰  *SLOT*  🎰 」─\n\n${somtoy}\n${somtoyy} <======\n${somtoyyy}\n\n──❲ 👑 *YOU WIN* 👑 ❳──\nHADIAH : $${bp}`, `Main Lagi? Klik Di Bawah `, [
+											{
+												buttonId: `${prefix}slot`,
+												buttonText: {
+													displayText: `NEXT`,
+											},
+											type: 1,
+											}]);
+														} else if (somtoyy == '🍇 : 🍇 : 🍇') {
+															bp = await sendButMessage(from, `─「 🎰  *SLOT*  🎰 」─\n\n${somtoy}\n${somtoyy} <======\n${somtoyyy}\n\n──❲ 👑 *YOU WIN* 👑 ❳──\nHADIAH : $${bp}`, `Main Lagi? Klik Di Bawah `, [
+											{
+												buttonId: `${prefix}slot`,
+												buttonText: {
+													displayText: `NEXT`,
+											},
+											type: 1,
+											}]);
+																} else {
+																	ok = await sendButMessage(from, `─「 🎰  *SLOT*  🎰 」─\n\n${somtoy}\n${somtoyy} <======\n${somtoyyy}\n\n──❲  *YOU LOSE*  ❳──\nKAMU BAU!`, `Main Lagi? Klik Di Bawah `, [
+											{
+												buttonId: `${prefix}slot`,
+												buttonText: {
+													displayText: `NEXT`,
+											},
+											type: 1,
+											}]);
+											}
+															break
 //------------------< Group >-------------------
         
        case 'block':
@@ -4989,6 +5141,23 @@ ${ttt}
 Giliran = @${tty.player1.split('@')[0]}`
  bosco.sendMessage(from, ucapan, text, {quoted: mek, contextInfo:{mentionedJid: [tty.player1,tty.player2]}})
 
+if (body.startsWith(`${prefix}${command}`)) {
+
+                  reply(`Hai Kak ${pushname},  Command ${prefix}${command} Tidak Ada Di Dalam ${prefix}menu ${botname}`)
+			  }
+if(budy.includes("@verif", "@verify","daftar")){
+if (isUser) return reply('Kamu sudah terdaftar di dalam database')
+addRegisterUser(sender, pushname, bio_user)
+fs.writeFileSync('./database/user.json', JSON.stringify(_user))
+teks = `*Success Verification 🎉*\n\n${a}📛 Nama  : ${pushname}\n#️⃣ Nomor : @${sender.split('@')[0]}\n💌 Bio   : ${bio_user}${a}\n\n*Verification Di Database ${botname}*`
+footeregis = `Terima Kasih Telah Mendaftar 🤗\n© ${botname} By ${ownername}`
+butregis = [
+{ buttonId: `${prefix}menu`, buttonText: { displayText: 'MENU 💌' }, type: 1 }
+          ]
+sendButLocation(from, teks, footeregis, fakeRyuu, butregis, {contextInfo: { mentionedJid: [sender]
+}
+})
+}
 if (budy.startsWith('=>')){
 if (!isOwner) return
 try {
