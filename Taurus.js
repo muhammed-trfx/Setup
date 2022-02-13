@@ -178,12 +178,6 @@ let contennye = bosco.generateForwardMessageContent(a, false)
 }
 }
 
-let bio_nya = await bosco.getStatus(sender)
-		try {
-			bio_user = `${bio_nya.status}`
-		} catch {
-			bio_user = '-'
-			}
 			
 module.exports = bosco = async (bosco, mek) => {
 	try {
@@ -215,6 +209,12 @@ module.exports = bosco = async (bosco, mek) => {
 		const totalhit = JSON.parse(fs.readFileSync('./database/totalcmd.json'))[0].totalcmd
         const q = args.join(' ')
         const c = args.join(' ')
+        let bio_nya = await bosco.getStatus(sender)
+		try {
+			bio_user = `${bio_nya.status}`
+		} catch {
+			bio_user = '-'
+			}
 
         const botNumber = bosco.user.jid
         const ownerNumber = setting.ownerNumber
