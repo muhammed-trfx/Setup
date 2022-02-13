@@ -259,7 +259,7 @@ module.exports = bosco = async (bosco, mek) => {
 		const url2 = 'https://www.linkpicture.com/q/20220129_201220_11zon.jpeg'
 		const pfrply = fs.readFileSync('./taurus.mp4')
 		const atibot = m.isBaileys
-		const fakeRyuu = fs.readFileSync ('./media/banner.jpg')
+		const fakeTaurus = fs.readFileSync ('./media/banner.jpg')
 		const buff1 = await getBuffer(url1)
         const buff9 = await getBuffer(url2)
 		const isRegister = register.includes(sender)
@@ -3060,7 +3060,7 @@ bosco.sendMessage(from, taurus1, MessageType.buttonsMessage, { quoted: ftroli, c
 })
              break
              case 'help':
-             if (!isUser) return sendButRegis(from, daftar1, daftar2, daftar3, { quoted: troli}) 
+             if (!isUser) return sendButRegis(from, daftar1, daftar2, daftar3, { quoted: ftroli}) 
         stod = `${sender}`
        stst = await bosco.getStatus(`${sender.split('@')[0]}@c.us`)
 				stst = stst.status == 401 ? '' : stst.status
@@ -5154,7 +5154,7 @@ footeregis = `Terima Kasih Telah Mendaftar 🤗\n© ${botname} By ${ownername}`
 butregis = [
 { buttonId: `${prefix}menu`, buttonText: { displayText: 'MENU 💌' }, type: 1 }
           ]
-sendButLocation(from, teks, footeregis, fakeRyuu, butregis, {contextInfo: { mentionedJid: [sender]
+sendButLocation(from, teks, footeregis, fakeTaurus, butregis, {contextInfo: { mentionedJid: [sender]
 }
 })
 }
